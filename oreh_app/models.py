@@ -6,12 +6,19 @@ class BusinessModel(models.Model):
     distribution = models.TextField("Дистрибуция")
     promotionStrategy = models.TextField("Стратегия продвижения")
 
+    class Meta:
+        verbose_name = "Бизнес модель"
+        verbose_name_plural = "Бизнес модели"
+
 
 class FinancialPlan(models.Model):
     projectCosts = models.TextField("Расходы по проекту")
     expectedResults = models.TextField(" Ожидаемые ключевые финансовые результаты")
     requestedFunds = models.TextField("Запрашиваемый объем денежных средств ")
 
+   class Meta:
+        verbose_name = "Финансовый план"
+        verbose_name_plural = "Финансовые планы"
 
 class Participant:
     pass
@@ -20,6 +27,10 @@ class Participant:
 class Team(models.Model):
     name = models.CharField("Имя", max_length=100)
     participant = models.ManyToManyField(Participant, verbose_name="Участник")
+
+    class Meta:
+        verbose_name = "Команда"
+        verbose_name_plural = "Команды"
 
 
 class Activity(models.Model):
@@ -30,6 +41,10 @@ class Activity(models.Model):
     organizers = models.TextField("Организаторы")
     places = models.CharField("кол-во мест")
     date = models.TextField("дата")
+
+    class Meta:
+        verbose_name = "Мероприятие"
+        verbose_name_plural = "Мероприятия"
 
 
 class Project:
@@ -44,6 +59,9 @@ class Person(models.Model):
     project = models.ManyToManyField(Project, verbose_name="Проект")
     fieldOfActivity = models.ManyToManyField(FieldOfActivity, verbose_name="Сфера деятельности")
 
+   class Meta:
+        verbose_name = "Лицо"
+        verbose_name_plural = "Лица"
 
 class Courses(models.Model):
     name = models.CharField("Имя", max_length=100)
@@ -56,6 +74,10 @@ class Courses(models.Model):
     sphere = models.TextField("Сфера")
     requirementsForACandidate = models.TextField("Требования к кандидату")
 
+    class Meta:
+        verbose_name = "Курсы"
+        verbose_name_plural = "Курсы"
+
 
 class Participant(models.Model):
     team = models.ManyToManyField(Team, verbose_name="команда")
@@ -63,6 +85,10 @@ class Participant(models.Model):
     person = models.ManyToManyField(Person, verbose_name="Лицо")
     activity = models.ManyToManyField(Activity, verbose_name="мероприятие")
     courses = models.ManyToManyField(Courses, verbose_name="Курсы")
+
+    class Meta:
+        verbose_name = "Участник"
+        verbose_name_plural = "Участники"
 
 
 class Project(models.Model):
@@ -76,14 +102,26 @@ class Project(models.Model):
     financialPlan = models.ManyToManyField(FinancialPlan, verbose_name="Финансовый план")
     businessModel = models.ManyToManyField(BusinessModel, verbose_name="Бизнес модель")
 
+    class Meta:
+        verbose_name = "Проект"
+        verbose_name_plural = "Проекты"
+
 
 class Services(models.Model):
     name = models.CharField("Имя", max_length=100)
     description = models.TextField("Описание")
 
+    class Meta:
+        verbose_name = "Сервис"
+        verbose_name_plural = "Сервисы"
+
 
 class FieldOfActivity(models.Model):
     name = models.CharField("Имя", max_length=100)
+
+    class Meta:
+        verbose_name = "Сфера деятельности"
+        verbose_name_plural = "Сферы деятельности"
 
 
 class Achievements(models.Model):
@@ -92,11 +130,17 @@ class Achievements(models.Model):
     description = models.TextField("Описание")
     name = models.CharField("Имя", max_length=100)
 
+    class Meta:
+        verbose_name = "Достижение"
+        verbose_name_plural = "Достижения"
+
 
 class Competitors(models.Model):
     project = models.ManyToManyField(Project, verbose_name="Проект")
     name = models.CharField("Имя", max_length=100)
 
-
+   class Meta:
+        verbose_name = "Конкурент"
+        verbose_name_plural = "Конкуренты"
 
 
