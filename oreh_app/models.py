@@ -7,7 +7,7 @@ class BusinessModel(models.Model):
     promotionStrategy = models.TextField("Стратегия продвижения")
 
     def __str__(self):
-        return self.name
+        return self.earnings
 
     class Meta:
         verbose_name = "Бизнес модель"
@@ -20,7 +20,7 @@ class FinancialPlan(models.Model):
     requestedFunds = models.TextField("Запрашиваемый объем денежных средств ")
 
     def __str__(self):
-        return self.name
+        return self.expectedResults
 
     class Meta:
         verbose_name = "Финансовый план"
@@ -111,7 +111,7 @@ class Participant(models.Model):
     # courses = models.ManyToManyField(Courses, verbose_name="Курсы")
 
     def __str__(self):
-        return self.name
+        return self.person.__str__()
 
     class Meta:
         verbose_name = "Участник"
