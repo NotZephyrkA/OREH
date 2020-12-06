@@ -3,7 +3,7 @@ from django.db import models
 
 # Сфера деятельности
 class FieldOfActivity(models.Model):
-    name = models.CharField(max_length=128)
+    name = models.CharField(max_length=128, default='name')
 
     def __str__(self):
         return self.name
@@ -11,7 +11,7 @@ class FieldOfActivity(models.Model):
 
 # Лицо
 class Person(models.Model):
-    name = models.CharField("Имя", max_length=100)
+    name = models.CharField("Имя", max_length=100, default='name')
     field_of_activity = models.ForeignKey(FieldOfActivity, null=True, blank=True, on_delete=models.SET_NULL)
 
     def __str__(self):
@@ -24,7 +24,7 @@ class Person(models.Model):
 
 # Курсы
 class Courses(models.Model):
-    name = models.CharField(max_length=128)
+    name = models.CharField(max_length=128, default='name')
     description = models.TextField()
     date_of_start = models.DateField()
     date_of_end = models.DateField()
@@ -42,9 +42,9 @@ class Courses(models.Model):
 class Participant(models.Model):
     photo = models.ImageField()
     description = models.TextField()
-    per = models.OneToOneField(Person, on_delete=models.CASCADE)
-    team = models.ForeignKey(FieldOfActivity, null=True, blank=True, on_delete=models.SET_NULL)
-    courses = models.ManyToManyField(Courses, null=True, blank=True, on_delete=models.SET_NULL)
+    person = models.OneToOneField(Person, null=True, blank=True, on_delete=models.CASCADE)
+    field_of_activity = models.ForeignKey(FieldOfActivity, null=True, blank=True, on_delete=models.SET_NULL)
+    courses = models.ManyToManyField(Courses)
 
     def __str__(self):
         return self.description
@@ -53,7 +53,7 @@ class Participant(models.Model):
 # Команда
 class Team(models.Model):
     participant = models.ManyToManyField(Participant)
-    title = models.CharField(max_length=128)
+    title = models.CharField(max_length=128, default='name')
     field_of_activity = models.ForeignKey(FieldOfActivity, null=True, blank=True, on_delete=models.SET_NULL)
 
     def __str__(self):
@@ -65,18 +65,18 @@ class Graduate(models.Model):
     photo = models.ImageField()
     description = models.TextField()
     team = models.ForeignKey(FieldOfActivity, null=True, blank=True, on_delete=models.SET_NULL)
-    per = models.OneToOneField(Person, on_delete=models.CASCADE)
+    person = models.OneToOneField(Person, null=True, blank=True, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.per
+        return self.person
 
 
 # Резидент
 class Resident(models.Model):
-    name = models.CharField(max_length=128)
+    name = models.CharField('Имя',max_length=128, default='name')
     second_name = models.CharField(max_length=128)
     team = models.ForeignKey(FieldOfActivity, null=True, blank=True, on_delete=models.SET_NULL)
-    person = models.OneToOneField(Person, on_delete=models.CASCADE)
+    person = models.OneToOneField(Person,null=True, blank=True, on_delete=models.CASCADE)
 
     def __str__(self):
         return f"{self.name} {self.second_name}"
@@ -84,12 +84,12 @@ class Resident(models.Model):
 
 # Физическое лицо
 class NatPer(models.Model):
-    name = models.CharField(max_length=128)
+    name = models.CharField('Имя',max_length=128, default='name')
     second_name = models.CharField(max_length=128)
     # Отчество
     middle_name = models.CharField(max_length=128)
     team = models.ForeignKey(FieldOfActivity, null=True, blank=True, on_delete=models.SET_NULL)
-    per = models.OneToOneField(Person, on_delete=models.CASCADE)
+    person = models.OneToOneField(Person, null=True, blank=True, on_delete=models.CASCADE)
 
     def __str__(self):
         return f"{self.name} {self.second_name}"
@@ -97,7 +97,7 @@ class NatPer(models.Model):
 
 # Работники
 class Workers(models.Model):
-    nat_per = models.OneToOneField(NatPer, on_delete=models.CASCADE)
+    nat_per = models.OneToOneField(NatPer, null=True, blank=True, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.nat_per.name
@@ -105,7 +105,7 @@ class Workers(models.Model):
 
 # Юр. Лицо
 class LegalEntity(models.Model):
-    per = models.OneToOneField(Person, on_delete=models.CASCADE)
+    per = models.OneToOneField(Person, null=True, blank=True, on_delete=models.CASCADE)
     title = models.CharField(max_length=128)
     team = models.ForeignKey(FieldOfActivity, null=True, blank=True, on_delete=models.SET_NULL)
 
@@ -140,7 +140,7 @@ class BusinessModel(models.Model):
 
 
 class Project(models.Model):
-    name = models.CharField("Имя", max_length=100)
+    name = models.CharField("Имя", max_length=100,default='name')
     descriptionOfTheProblem = models.TextField("Описание проблемы")
     solutionToTheProblem = models.TextField("Решение проблемы")
     solutionBenefits = models.TextField("Приемущества решения")
@@ -159,7 +159,7 @@ class Project(models.Model):
 
 
 class Services(models.Model):
-    name = models.CharField("Имя", max_length=100)
+    name = models.CharField("Имя", max_length=100, default='name')
     description = models.TextField("Описание")
 
     def __str__(self):
@@ -174,7 +174,7 @@ class Achievements(models.Model):
     person = models.ForeignKey(Person, null=True, blank=True, on_delete=models.SET_NULL, verbose_name="Лицо")
     date = models.TextField("Дата")
     description = models.TextField("Описание")
-    name = models.CharField("Имя", max_length=100)
+    name = models.CharField("Имя", max_length=100, default='name')
 
     def __str__(self):
         return self.name
@@ -186,7 +186,7 @@ class Achievements(models.Model):
 
 class Competitors(models.Model):
     project = models.OneToOneField(Project, null=True, blank=True, on_delete=models.SET_NULL, verbose_name="Проект")
-    name = models.CharField("Имя", max_length=100)
+    name = models.CharField("Имя", max_length=100, default='name')
 
     def __str__(self):
         return self.name

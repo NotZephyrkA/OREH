@@ -2,7 +2,7 @@ from django.contrib import admin
 
 # Register your models here.
 from oreh_app.models import Graduate, Resident, NatPer, Workers, \
-    LegalEntity, BusinessModel, FinancialPlan, Team, Activity, Person, Courses, Participant, Project,  Services, FieldOfActivity, Achievements, Competitors
+    LegalEntity, BusinessModel, FinancialPlan, Team, Person, Courses, Participant, Project,  Services, FieldOfActivity, Achievements, Competitors
 
 admin.site.register(FieldOfActivity)
 admin.site.register(Person)
@@ -16,7 +16,6 @@ admin.site.register(Workers)
 admin.site.register(LegalEntity)
 admin.site.register(BusinessModel)
 admin.site.register(FinancialPlan)
-admin.site.register(Activity)
 admin.site.register(Project)
 admin.site.register(Services)
 admin.site.register(Achievements)
