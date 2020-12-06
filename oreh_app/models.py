@@ -1,17 +1,116 @@
 from django.db import models
 
 
-class BusinessModel(models.Model):
-    earnings = models.TextField("Зароботок")
-    distribution = models.TextField("Дистрибуция")
-    promotionStrategy = models.TextField("Стратегия продвижения")
+# Сфера деятельности
+class FieldOfActivity(models.Model):
+    name = models.CharField(max_length=128)
 
     def __str__(self):
-        return self.earnings
+        return self.name
+
+
+# Лицо
+class Person(models.Model):
+    name = models.CharField("Имя", max_length=100)
+    field_of_activity = models.ForeignKey(FieldOfActivity, null=True, blank=True, on_delete=models.SET_NULL)
+
+    def __str__(self):
+        return self.name
 
     class Meta:
-        verbose_name = "Бизнес модель"
-        verbose_name_plural = "Бизнес модели"
+        verbose_name = "Лицо"
+        verbose_name_plural = "Лица"
+
+
+# Курсы
+class Courses(models.Model):
+    name = models.CharField(max_length=128)
+    description = models.TextField()
+    date_of_start = models.DateField()
+    date_of_end = models.DateField()
+    author = models.CharField(max_length=128)
+    count_place = models.IntegerField()
+    place = models.TextField()
+    requirement = models.TextField()
+    field_of_activity = models.ForeignKey(FieldOfActivity, null=True, blank=True, on_delete=models.SET_NULL)
+
+    def __str__(self):
+        return self.name
+
+
+# Участник
+class Participant(models.Model):
+    photo = models.ImageField()
+    description = models.TextField()
+    per = models.OneToOneField(Person, on_delete=models.CASCADE)
+    team = models.ForeignKey(FieldOfActivity, null=True, blank=True, on_delete=models.SET_NULL)
+    courses = models.ManyToManyField(Courses, null=True, blank=True, on_delete=models.SET_NULL)
+
+    def __str__(self):
+        return self.description
+
+
+# Команда
+class Team(models.Model):
+    participant = models.ManyToManyField(Participant)
+    title = models.CharField(max_length=128)
+    field_of_activity = models.ForeignKey(FieldOfActivity, null=True, blank=True, on_delete=models.SET_NULL)
+
+    def __str__(self):
+        return self.title
+
+
+# Выпускник
+class Graduate(models.Model):
+    photo = models.ImageField()
+    description = models.TextField()
+    team = models.ForeignKey(FieldOfActivity, null=True, blank=True, on_delete=models.SET_NULL)
+    per = models.OneToOneField(Person, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.per
+
+
+# Резидент
+class Resident(models.Model):
+    name = models.CharField(max_length=128)
+    second_name = models.CharField(max_length=128)
+    team = models.ForeignKey(FieldOfActivity, null=True, blank=True, on_delete=models.SET_NULL)
+    person = models.OneToOneField(Person, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.name} {self.second_name}"
+
+
+# Физическое лицо
+class NatPer(models.Model):
+    name = models.CharField(max_length=128)
+    second_name = models.CharField(max_length=128)
+    # Отчество
+    middle_name = models.CharField(max_length=128)
+    team = models.ForeignKey(FieldOfActivity, null=True, blank=True, on_delete=models.SET_NULL)
+    per = models.OneToOneField(Person, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.name} {self.second_name}"
+
+
+# Работники
+class Workers(models.Model):
+    nat_per = models.OneToOneField(NatPer, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.nat_per.name
+
+
+# Юр. Лицо
+class LegalEntity(models.Model):
+    per = models.OneToOneField(Person, on_delete=models.CASCADE)
+    title = models.CharField(max_length=128)
+    team = models.ForeignKey(FieldOfActivity, null=True, blank=True, on_delete=models.SET_NULL)
+
+    def __str__(self):
+        return self.title
 
 
 class FinancialPlan(models.Model):
@@ -27,95 +126,17 @@ class FinancialPlan(models.Model):
         verbose_name_plural = "Финансовые планы"
 
 
-class Participant(models.Model):
-    pass
-
-
-class FieldOfActivity(models.Model):
-    pass
-
-
-class Team(models.Model):
-    name = models.CharField("Имя", max_length=100)
-    # fieldOfActivity = models.ForeignKey(FieldOfActivity, null=True, blank=True, on_delete=models.SET_NULL, verbose_name="Сфера деятельности")
+class BusinessModel(models.Model):
+    earnings = models.TextField("Зароботок")
+    distribution = models.TextField("Дистрибуция")
+    promotionStrategy = models.TextField("Стратегия продвижения")
 
     def __str__(self):
-        return self.name
+        return self.earnings
 
     class Meta:
-        verbose_name = "Команда"
-        verbose_name_plural = "Команды"
-
-
-class Activity(models.Model):
-    name = models.CharField("Имя", max_length=100)
-    description = models.TextField("Описание")
-    image = models.ImageField("Изображение", upload_to="Activity/")
-    numberOfSeats = models.IntegerField("Кол-во мест")
-    organizers = models.TextField("Организаторы")
-    date = models.DateField("дата")
-
-    def __str__(self):
-        return self.name
-
-    class Meta:
-        verbose_name = "Мероприятие"
-        verbose_name_plural = "Мероприятия"
-
-
-# class Project(models.Model):
-#     pass
-#
-#
-# class FieldOfActivity(models.Model):
-#     pass
-
-
-class Person(models.Model):
-    name = models.CharField("Имя", max_length=100)
-    # project = models.ManyToManyField(Project, verbose_name="Проект")
-    # fieldOfActivity = models.ForeignKey(FieldOfActivity, null=True, blank=True, on_delete=models.SET_NULL, verbose_name="Сфера деятельности")
-
-    def __str__(self):
-        return self.name
-
-    class Meta:
-        verbose_name = "Лицо"
-        verbose_name_plural = "Лица"
-
-
-class Courses(models.Model):
-    name = models.CharField("Имя", max_length=100)
-    description = models.TextField("Описание")
-    dateOfStart = models.DateField("Дата начала")
-    dateOfCompletion = models.DateField("Дата завершения")
-    author = models.TextField("Автор")
-    numberOfSeats = models.TextField("Кол-во мест")
-    placeToHost = models.TextField("Место проведения")
-    sphere = models.TextField("Сфера")
-    requirementsForACandidate = models.TextField("Требования к кандидату")
-
-    def __str__(self):
-        return self.name
-
-    class Meta:
-        verbose_name = "Курсы"
-        verbose_name_plural = "Курсы"
-
-
-class Participant(models.Model):
-    team = models.ForeignKey(Team, null=True, blank=True, on_delete=models.SET_NULL, verbose_name="команда")
-    image = models.ImageField("Изображение", upload_to="Participant/")
-    person = models.OneToOneField(Person, null=True, blank=True, on_delete=models.SET_NULL, verbose_name="Лицо")
-    # activity = models.ManyToManyField(Activity, verbose_name="мероприятие")
-    # courses = models.ManyToManyField(Courses, verbose_name="Курсы")
-
-    def __str__(self):
-        return self.person.__str__()
-
-    class Meta:
-        verbose_name = "Участник"
-        verbose_name_plural = "Участники"
+        verbose_name = "Бизнес модель"
+        verbose_name_plural = "Бизнес модели"
 
 
 class Project(models.Model):
@@ -147,17 +168,6 @@ class Services(models.Model):
     class Meta:
         verbose_name = "Сервис"
         verbose_name_plural = "Сервисы"
-
-
-class FieldOfActivity(models.Model):
-    name = models.CharField("Имя", max_length=100)
-
-    def __str__(self):
-        return self.name
-
-    class Meta:
-        verbose_name = "Сфера деятельности"
-        verbose_name_plural = "Сферы деятельности"
 
 
 class Achievements(models.Model):
