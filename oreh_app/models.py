@@ -73,10 +73,11 @@ class Graduate(models.Model):
 
 # Резидент
 class Resident(models.Model):
-    name = models.CharField('Имя',max_length=128, default='name')
+    name = models.CharField('Имя', max_length=128, default='name')
     second_name = models.CharField(max_length=128)
     team = models.ForeignKey(FieldOfActivity, null=True, blank=True, on_delete=models.SET_NULL)
-    person = models.OneToOneField(Person,null=True, blank=True, on_delete=models.CASCADE)
+    description = models.TextField()
+    person = models.OneToOneField(Person, null=True, blank=True, on_delete=models.CASCADE)
 
     def __str__(self):
         return f"{self.name} {self.second_name}"
@@ -84,7 +85,7 @@ class Resident(models.Model):
 
 # Физическое лицо
 class NatPer(models.Model):
-    name = models.CharField('Имя',max_length=128, default='name')
+    name = models.CharField('Имя', max_length=128, default='name')
     second_name = models.CharField(max_length=128)
     # Отчество
     middle_name = models.CharField(max_length=128)
@@ -140,15 +141,17 @@ class BusinessModel(models.Model):
 
 
 class Project(models.Model):
-    name = models.CharField("Имя", max_length=100,default='name')
+    name = models.CharField("Имя", max_length=100, default='name')
     descriptionOfTheProblem = models.TextField("Описание проблемы")
     solutionToTheProblem = models.TextField("Решение проблемы")
     solutionBenefits = models.TextField("Приемущества решения")
     team = models.ForeignKey(Team, null=True, blank=True, on_delete=models.SET_NULL, verbose_name="Команда")
     dateOfStart = models.DateField("Дата начала")
     dateOfCompletion = models.DateField("Дата завершения")
-    financialPlan = models.OneToOneField(FinancialPlan, null=True, blank=True, on_delete=models.SET_NULL, verbose_name="Финансовый план")
-    businessModel = models.OneToOneField(BusinessModel, null=True, blank=True, on_delete=models.SET_NULL, verbose_name="Бизнес модель")
+    financialPlan = models.OneToOneField(FinancialPlan, null=True, blank=True, on_delete=models.SET_NULL,
+                                         verbose_name="Финансовый план")
+    businessModel = models.OneToOneField(BusinessModel, null=True, blank=True, on_delete=models.SET_NULL,
+                                         verbose_name="Бизнес модель")
 
     def __str__(self):
         return self.name
