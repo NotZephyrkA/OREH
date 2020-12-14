@@ -1,6 +1,7 @@
-{% extends 'templates/base.html' %}
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
 <div class="site-wrap">
-
     <div class="site-mobile-menu site-navbar-target">
         <div class="site-mobile-menu-header">
             <div class="site-mobile-menu-close mt-3">
@@ -12,11 +13,8 @@
 
 
     <div class="site-blocks-cover overlay" data-aos="fade" id="home-section">
-
         <div class="container">
             <div class="row align-items-center justify-content-center">
-
-
                 <div class="col-md-8 mt-lg-5 text-center">
                     <h1 class="text-uppercase mb-5" data-aos="fade-up">Создаём пространство движений</h1>
 
@@ -34,11 +32,11 @@
         </span>
         </a>
     </div>
-    <section id="feat">
+    <section class="site-section cta-big-image" id="feat">
         <div class="container">
             <div class="row features">
-
                 <div class="col-md-4 text-center wow fadeInUp" data-wow-delay="100ms">
+                    <img src="{% static 'images/1.png' %}" alt="Image" class="img-fluid">
                     <h4>Лучший</h4>
                     <p>стунденческий бизнес-инкубатор в Россиив 2016 </p>
                 </div>
@@ -55,32 +53,36 @@
             </div>
         </div>
     </section>
-    <section id="info" class="blog wow fadeInUp" data-wow-delay="300ms">
+    <section id="info" class="site-section cta-big-image">
         <div class="container">
-            <div class="row">
-                <div class="col-md-7">
-                    <h2>OREH - это...</h2>
-                    <ul>
-                        <li>Развитие студенческого предпринимательства</li>
-                        <li>Помощь в поиске и упаковке бизнес-идеи</li>
-                        <li>Участие в мероприятиях и конкурсах</li>
-                        <li>Предоставление рабочего места</li>
-                        <li>Весенняя/осенняя школы резидента</li>
-                        <li>Co-working пространство для студентов</li>
-                        <li>Факультатив для студентов СВФУ</li>
-                        <li>«Интернет-предпринимательство»</li>
-                        <li>Среда единомышленников</li>
-                    </ul>
-                    <a class="btn btn-danger btn-lg" href="#">Take a Look <i class="fa fa-arrow-circle-o-right"></i>
-                    </a>
-                </div>
-                <div class="col-md-5">
-                    <a href="#">
-                        <img src="{% static 'images/2020-12-12_18-02-28.png' %}" alt="" class="img-responsive">
-                    </a>
+            <div class="row mb-5">
+                <div class="col-12 text-center" data-aos="fade">
+                    <h2 class="section-title mb-3">OREH - это...</h2>
                 </div>
             </div>
-        </div>
+            <div class="row">
+                <div class="col-lg-5 ml-auto" data-aos="fade-up" data-aos-delay="100">
+                    <div class="mb-4">
+                        <ul class="list-unstyled ul-check success">
+                            <li>Развитие студенческого предпринимательства</li>
+                            <li>Помощь в поиске и упаковке бизнес-идеи</li>
+                            <li>Участие в мероприятиях и конкурсах</li>
+                            <li>Предоставление рабочего места</li>
+                            <li>Весенняя/осенняя школы резидента</li>
+                            <li>Co-working пространство для студентов</li>
+                            <li>Факультатив для студентов СВФУ</li>
+                            <li>«Интернет-предпринимательство»</li>
+                            <li>Среда единомышленников</li>
+                        </ul>
+                    </div>
+                    <p><a href="#contact-section" class="smoothscroll btn btn-primary">Take a Look</a></p>
+                </div>
+                <div class="col-lg-6 mb-5" data-aos="fade-up" data-aos-delay="">
+                    <figure class="circle-bg">
+                        <img src="{% static 'images/hero_1.jpg' %}" alt="Image" class="img-fluid">
+                    </figure>
+                </div>
+            </div>
     </section>
     <div class="site-section cta-big-image" id="about-section">
         <div class="container">
@@ -875,21 +877,6 @@
             </div>
         </div>
     </section>
-
-
 </div> <!-- .site-wrap -->
+{% endblock content %}
 
-<script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
-<script src="{% static 'js/jquery-ui.js' %}"></script>
-<script src="{% static 'js/popper.min.js' %}"></script>
-<script src="{% static 'js/bootstrap.min.js' %}"></script>
-<script src="{% static 'js/owl.carousel.min.js' %}"></script>
-<script src="{% static 'js/jquery.countdown.min.js' %}"></script>
-<script src="{% static 'js/jquery.easing.1.3.js' %}"></script>
-<script src="{% static 'js/aos.js' %}"></script>
-<script src="{% static 'js/jquery.fancybox.min.js' %}"></script>
-<script src="{% static 'js/jquery.sticky.js' %}"></script>
-<script src="{% static 'js/isotope.pkgd.min.js' %}"></script>
-
-
-<script src="{% static 'js/main.js' %}"></script>
