@@ -31,18 +31,18 @@
     <div class="container">
         <div class="row mb-5">
             <div class="col-12 text-center aos-init aos-animate" data-aos="fade">
-                <h2 class="section-title mb-3">Our residents</h2>
+                <h2 class="section-title mb-3">Current projects</h2>
             </div>
         </div>
         <div class="row">
-            {% for resident in residents %}
+            {% for current_project in current_projects %}
             <div class="col-md-6 col-lg-4 mb-4 mb-lg-4 aos-init aos-animate" data-aos="fade-up" data-aos-delay="">
                 <div class="h-entry">
                     <a href="single.html">
-                        <img src="{{resident.photo}}" alt="Image" class="img-fluid">
+                        <img src="{{current_project.photo}}" alt="Image" class="img-fluid">
                     </a>
-                    <h2 class="font-size-regular"><a href="#">{{resident.name}}</a></h2>
-                    <p>{{resident.description|truncatechars:100}}</p>
+                    <h2 class="font-size-regular"><a href="#">{{сurrent_project.name}}</a></h2>
+                    <p>{{current_project.annotation|truncatechars:100}}</p>
                     <p><a href="#">Continue Reading...</a></p>
                 </div>
             </div>
