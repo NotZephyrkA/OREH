@@ -38,7 +38,7 @@
                 <div class="col-md-4 text-center wow fadeInUp" data-wow-delay="100ms">
                     <img src="{% static 'images/1.png' %}" alt="Image" class="img-fluid">
                     <h4>Лучший</h4>
-                    <p>стунденческий бизнес-инкубатор в Россиив 2016 </p>
+                    <p>стунденческий бизнес-инкубатор в России в 2016(по версии ФИБИ МГИМО) </p>
                 </div>
                 <div class="col-md-4 text-center wow fadeInUp" data-wow-delay="300ms">
                     <img src="{% static 'images/2.png' %}" alt="Image" class="img-fluid">
@@ -84,14 +84,16 @@
                 </div>
             </div>
     </section>
-    <div class="site-section cta-big-image" id="about-section">
+
+    <div class="site-section cta-big-image" id="achievement-section">
         <div class="container">
             <div class="row mb-5">
                 <div class="col-12 text-center" data-aos="fade">
-                    <h2 class="section-title mb-3">About Oneder</h2>
+                    <h2 class="section-title mb-3">Достижения СВФУ</h2>
                 </div>
             </div>
             <div class="row">
+                {% for achievement in achievements %}
                 <div class="col-lg-6 mb-5" data-aos="fade-up" data-aos-delay="">
                     <figure class="circle-bg">
                         <img src="{% static 'images/hero_1.jpg' %}" alt="Image" class="img-fluid">
@@ -99,28 +101,11 @@
                 </div>
                 <div class="col-lg-5 ml-auto" data-aos="fade-up" data-aos-delay="100">
                     <div class="mb-4">
-                        <h3 class="h3 mb-4 text-black">For the next great business</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo tempora cumque eligendi in
-                            nostrum labore omnis quaerat.</p>
-
-
+                        <h3 class="h3 mb-4 text-black">{{achievement.name}}</h3>
+                        <p>{{achievement.description}}</p>
                     </div>
-
-
-                    <div class="mb-4">
-                        <ul class="list-unstyled ul-check success">
-                            <li>Officia quaerat eaque neque</li>
-                            <li>Possimus aut consequuntur incidunt</li>
-                            <li>Lorem ipsum dolor sit amet</li>
-                            <li>Consectetur adipisicing elit</li>
-                        </ul>
-
-                    </div>
-
-                    <p><a href="#contact-section" class="smoothscroll btn btn-primary">Get In Touch</a></p>
-
-
                 </div>
+                {% endfor %}
             </div>
         </div>
     </div>
@@ -796,7 +781,7 @@
         <div class="container">
             <div class="row mb-5">
                 <div class="col-12 text-center">
-                    <h2 class="section-title mb-3">Contact Us</h2>
+                    <h2 class="section-title mb-3">Есть вопросы? Связаться с нами.</h2>
                 </div>
             </div>
             <div class="row mb-5">
@@ -805,19 +790,35 @@
                 <div class="col-md-4 text-center">
                     <p class="mb-4">
                         <span class="icon-room d-block h4 text-primary"></span>
-                        <span>203 Fake St. Mountain View, San Francisco, California, USA</span>
+                        <span>г.Якутск, ул.Проспект Ленина 1, каб.502, 5 этаж </span>
                     </p>
                 </div>
                 <div class="col-md-4 text-center">
                     <p class="mb-4">
                         <span class="icon-phone d-block h4 text-primary"></span>
-                        <a href="#">+1 232 3235 324</a>
+                        <a href="#">+7 914 222-28-55</a>
                     </p>
                 </div>
                 <div class="col-md-4 text-center">
                     <p class="mb-0">
                         <span class="icon-mail_outline d-block h4 text-primary"></span>
-                        <a href="#">youremail@domain.com</a>
+                        <a href="#">sbioreh@gmail.com</a>
+                    </p>
+                </div>
+                <div class="col-md-4 text-center">
+                    <p class="mb-0">
+                        <a href="https://vk.com/sbioreh">
+                            <img src="{% static 'images/2020-12-15_19-41-10.png'%}" alt="Image" class="img-fluid">
+                            <span>orehsvfu</span>
+                        </a>
+                    </p>
+                </div>
+                <div class="col-md-4 text-center">
+                    <p class="mb-0">
+                        <a href="https://www.instagram.com/sbioreh/">
+                            <img src="{% static 'images/2020-12-15_19-52-40.png'%}" alt="Image" class="img-fluid">
+                            <span>sbioreh</span>
+                        </a>
                     </p>
                 </div>
             </div>
