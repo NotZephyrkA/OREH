@@ -39,7 +39,7 @@
             <div class="col-md-6 col-lg-4 mb-4 mb-lg-4 aos-init aos-animate" data-aos="fade-up" data-aos-delay="">
                 <div class="h-entry">
                     <a href="single.html">
-                        <img src="{{resident.photo}}" alt="Image" class="img-fluid">
+                        <img src="{{resident.image_url|default_if_none:'#'}}" alt="Image" class="img-fluid" height="200" width="200">
                     </a>
                     <h2 class="font-size-regular"><a href="#">{{resident.name}}</a></h2>
                     <p>{{resident.description|truncatechars:100}}</p>
