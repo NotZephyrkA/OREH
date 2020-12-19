@@ -18,4 +18,10 @@ class ResidentsView(View):
 class CurrentProjectsView(View):
     def get(self, request):
         current_projects = Project.objects.all()
-        return render(request, 'current projects.html', {'current projects': current_projects})
+        return render(request, 'current projects.html', {'current_projects': current_projects})
+
+
+class ProjectView(View):
+    def get(self, request, project_id):
+        project = Project.objects.get(id=project_id)
+        return render(request, 'project.html', {'project': project})
