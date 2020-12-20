@@ -7,4 +7,5 @@ urlpatterns = [
     path('residents/', views.ResidentsView.as_view()),
     path('current_project/', views.CurrentProjectsView.as_view()),
     re_path(r'projects/(?P<project_id>\d+)/', views.ProjectView.as_view(), name="project"),
+    re_path(r'residents/(?P<resident_id>\d+)/', views.ResidentsView.as_view(), name="resident"),
 ]

@@ -25,3 +25,9 @@ class ProjectView(View):
     def get(self, request, project_id):
         project = Project.objects.get(id=project_id)
         return render(request, 'project.html', {'project': project})
+
+
+class ResidentView(View):
+    def get(self, request, resident_id):
+        resident = Resident.objects.get(id=resident_id)
+        return render(request, 'resident.html', {'resident': resident})
