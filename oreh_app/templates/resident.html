@@ -28,71 +28,19 @@
 <body>
 <section class="site-section" id="about-section">
     <div class="container">
+
         <div class="row mb-5">
             <div class="col-12 text-center">
                 <h2 class="section-title mb-3">{{resident.name}}</h2>
-                <h4>{{resident.dateOfStart}} - {{resident.dateOfCompletion}}</h4>
-                <h4>Сфера деятельности: {{resident.fieldOfActivity}}</h4>
+                <a href="{% url 'project' resident.project.id %}"><h2 class="section-title mb-3">{{resident.project}}</h2></a>
             </div>
         </div>
-        <p>{{resident.annotation}}</p>
+        <img src="{{resident.image_url|default_if_none:'#'}}" alt="Image" class="img-fluid" height="200" width="200">
         <div class="row mb-5">
             <div class="col-12 text-center">
-                <h3>Описание проблемы</h3>
+                <h3>Описание</h3>
             </div>
-            <p>{{resident.descriptionOfTheProblem}}</p>
-        </div>
-        <div class="row mb-5">
-            <div class="col-12 text-center">
-                <h3>Решение проблемы</h3>
-            </div>
-            <p>{{resident.solutionToTheProblem}}</p>
-        </div>
-        <div class="row mb-5">
-            <div class="col-12 text-center">
-                <h3>Приемущества решения</h3>
-            </div>
-            <p>{{resident.solutionBenefits}}</p>
-        </div>
-        <div class="row mb-5">
-            <div class="col-12 text-center">
-                <h3>Финансовый план</h3>
-            </div>
-            <p>{{resident.financialPlan}}</p>
-        </div>
-        <div class="row mb-5">
-            <div class="col-12 text-center">
-                <h3>Бизнес модель</h3>
-            </div>
-            <p>{{resident.businessModel}}</p>
-        </div>
-        <div class="row mb-5">
-            <div class="col-12 text-center">
-                <h3>Участники</h3>
-            </div>
-        </div>
-        <div class="row mb-5">
-            <div class="row">
-                {% for participant in resident.participants.all %}
-                <div class="col-md-6 col-lg-3 mb-4 aos-init aos-animate" data-aos="fade-up" data-aos-delay="">
-                    <div class="team-member">
-                        <figure>
-                            <ul class="social">
-                                <li><a href="#"><span class="icon-facebook"></span></a></li>
-                                <li><a href="#"><span class="icon-twitter"></span></a></li>
-                                <li><a href="#"><span class="icon-linkedin"></span></a></li>
-                                <li><a href="#"><span class="icon-instagram"></span></a></li>
-                            </ul>
-                            <img src="{{participant.image_url}}" alt="Image" class="img-fluid" height="200" width="200">
-                        </figure>
-                        <div class="p-3">
-                            <h3>{{participant}}</h3>
-                            <span class="position">{{participant.position}}</span>
-                        </div>
-                    </div>
-                </div>
-                {% endfor %}
-            </div>
+            <p>{{resident.description}}</p>
         </div>
     </div>
 </section>
