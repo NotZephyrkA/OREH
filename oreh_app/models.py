@@ -214,3 +214,10 @@ class Services(models.Model):
 class Questions(models.Model):
     description = models.TextField(null=True, blank=True, verbose_name="Описание")
     answer = models.TextField(null=True, blank=True, verbose_name="Ответ")
+
+    def __str__(self):
+        return self.description
+
+    class Meta:
+        verbose_name = "Вопрос"
+        verbose_name_plural = "Вопросы"

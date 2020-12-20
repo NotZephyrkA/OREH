@@ -106,7 +106,7 @@
                     </div>
                 </div>
                 {% endfor %}
-                <p class="text-center"><a href='#'>Посмотреть больше...</a></p>
+                <p class="text-center"><a href="{url = 'achievements' current_achievement.id %}">Посмотреть больше...</a></p>
             </div>
         </div>
     </div>
@@ -138,7 +138,7 @@
 
             <div class="row site-section" id="faq-section">
                 <div class="col-12 text-center" data-aos="fade">
-                    <h2 class="section-title">Frequently Ask Questions</h2>
+                    <h2 class="section-title">Популярные вопросы</h2>
                 </div>
             </div>
             <div class="row">
@@ -148,7 +148,7 @@
                         <h3 class="text-black h5 mb-4">{{question.description}}</h3>
                         <p>{{question.answer}}</p>
                     </div>
-                {% enfor %}
+                {% endfor %}
                 </div>
             </div>
         </div>
