@@ -208,3 +208,9 @@ class Services(models.Model):
     class Meta:
         verbose_name = "Услуга"
         verbose_name_plural = "Услуги"
+
+
+# Вопрос
+class Questions(models.Model):
+    description = models.TextField(null=True, blank=True, verbose_name="Описание")
+    answer = models.TextField(null=True, blank=True, verbose_name="Ответ")
