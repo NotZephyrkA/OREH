@@ -36,7 +36,8 @@ class ResidentView(View):
         resident = Resident.objects.get(id=resident_id)
         return render(request, 'resident.html', {'resident': resident})
 
-    class AchievementView(View):
-        def get(self, request):
-            achievements = Achievement.objects.all()
-            return render(request, 'achievements.html', {'achievements': achievements})
+
+class AchievementView(View):
+    def get(self, request):
+        achievements = Achievement.objects.all()
+        return render(request, 'achievements.html', {'achievements': achievements})
