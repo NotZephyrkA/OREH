@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<section class="site-section" id="about-section">
+    <div class="container">
+        <div class="row mb-5">
+            <div class="col-12 text-center">
+                <h2 class="section-title mb-3">{{course.name}}</h2>
+                <h4>{{course.dateOfStart}} - {{course.dateOfCompletion}}</h4>
+                <h4>Сфера деятельности: {{course.fieldOfActivity}}</h4>
+            </div>
+        </div>
+        <p>{{course.annotation}}</p>
+        <div class="row mb-5">
+            <div class="col-12 text-center">
+                <h3>Описание проблемы</h3>
+            </div>
+            <p>{{course.descriptionOfTheProblem}}</p>
+        </div>
+        <div class="row mb-5">
+            <div class="col-12 text-center">
+                <h3>Решение проблемы</h3>
+            </div>
+            <p>{{course.solutionToTheProblem}}</p>
+        </div>
+        <div class="row mb-5">
+            <div class="col-12 text-center">
+                <h3>Приемущества решения</h3>
+            </div>
+            <p>{{course.solutionBenefits}}</p>
+        </div>
+        <div class="row mb-5">
+            <div class="col-12 text-center">
+                <h3>Финансовый план</h3>
+            </div>
+            <p>{{course.financialPlan}}</p>
+        </div>
+        <div class="row mb-5">
+            <div class="col-12 text-center">
+                <h3>Бизнес модель</h3>
+            </div>
+            <p>{{course.businessModel}}</p>
+        </div>
+        <div class="row mb-5">
+            <div class="col-12 text-center">
+                <h3>Участники</h3>
+            </div>
+        </div>
+        <div class="row mb-5">
+            <div class="row">
+                {% for participant in course.participants.all %}
+                <div class="col-md-6 col-lg-3 mb-4 aos-init aos-animate" data-aos="fade-up" data-aos-delay="">
+                    <div class="team-member">
+                        <figure>
+                            <ul class="social">
+                                <li><a href="#"><span class="icon-facebook"></span></a></li>
+                                <li><a href="#"><span class="icon-twitter"></span></a></li>
+                                <li><a href="#"><span class="icon-telegram"></span></a></li>
+                                <li><a href="#"><span class="icon-instagram"></span></a></li>
+                            </ul>
+                            <img src="{{participant.image_url}}" alt="Image" class="img-fluid" height="200" width="200">
+                        </figure>
+                        <div class="p-3">
+                            <h3>{{participant}}</h3>
+                            <span class="position">{{participant.position}}</span>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>
