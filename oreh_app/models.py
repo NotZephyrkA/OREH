@@ -195,3 +195,29 @@ class Profile(models.Model):
     class Meta:
         verbose_name = "Профиль"
         verbose_name_plural = "Профили"
+
+
+# Услуги
+class Services(models.Model):
+    name = models.CharField(max_length=128, default='name', verbose_name="Название")
+    description = models.TextField(null=True, blank=True, verbose_name="Описание")
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = "Услуга"
+        verbose_name_plural = "Услуги"
+
+
+# Вопрос
+class Questions(models.Model):
+    description = models.TextField(null=True, blank=True, verbose_name="Описание")
+    answer = models.TextField(null=True, blank=True, verbose_name="Ответ")
+
+    def __str__(self):
+        return self.description
+
+    class Meta:
+        verbose_name = "Вопрос"
+        verbose_name_plural = "Вопросы"
