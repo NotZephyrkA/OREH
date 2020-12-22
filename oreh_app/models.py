@@ -56,7 +56,7 @@ class Position(models.Model):
 
 # Участник
 class Participant(models.Model):
-    photo = models.ImageField(null=True, blank=True, verbose_name="Фото")
+    photo = models.ImageField(null=True, blank=True, verbose_name="Фото", upload_to="participant/", default='img_3.jpg')
     name = models.CharField(verbose_name='Имя', max_length=128, default='name')
     second_name = models.CharField(max_length=128, null=True, blank=True, verbose_name="Фамилия")
     middle_name = models.CharField(max_length=128, null=True, blank=True, verbose_name="Отчество")
@@ -64,6 +64,11 @@ class Participant(models.Model):
     place_of_work = models.TextField(null=True, blank=True, verbose_name="Место работы")
     position = models.ForeignKey(Position, null=True, blank=True, on_delete=models.SET_NULL,
                                  verbose_name="Должность в проекте")
+
+    @property
+    def image_url(self):
+        if self.photo and hasattr(self.photo, 'url'):
+            return self.photo.url
 
     def __str__(self):
         return f"{self.name} {self.second_name}"
@@ -75,6 +80,7 @@ class Participant(models.Model):
 
 # Проект
 class Project(models.Model):
+    photo = models.ImageField(null=True, blank=True, verbose_name="Фото", upload_to="resident/", default='img_3.jpg')
     name = models.CharField("Имя", max_length=100, default='name')
     fieldOfActivity = models.ForeignKey(FieldOfActivity, null=True, blank=True, on_delete=models.SET_NULL,
                                         verbose_name="Сфера деятельности")
@@ -91,6 +97,11 @@ class Project(models.Model):
     participants = models.ManyToManyField(Participant, blank=True,
                                           verbose_name="Участники")
 
+    @property
+    def image_url(self):
+        if self.photo and hasattr(self.photo, 'url'):
+            return self.photo.url
+
     def __str__(self):
         return self.name
 
@@ -101,10 +112,15 @@ class Project(models.Model):
 
 # Резидент
 class Resident(models.Model):
-    photo = models.ImageField(null=True, blank=True, verbose_name="Фото")
+    photo = models.ImageField(null=True, blank=True, verbose_name="Фото", upload_to="resident/", default='img_3.jpg')
     name = models.CharField('Имя', max_length=128, default='name')
     description = models.TextField(null=True, blank=True, verbose_name="Описание")
     project = models.ForeignKey(Project, null=True, blank=True, on_delete=models.SET_NULL, verbose_name="Проект")
+
+    @property
+    def image_url(self):
+        if self.photo and hasattr(self.photo, 'url'):
+            return self.photo.url
 
     def __str__(self):
         return self.name
@@ -143,7 +159,7 @@ class Achievement(models.Model):
 
 # Курсы
 class Courses(models.Model):
-    photo = models.ImageField(null=True, blank=True, verbose_name="Фото")
+    photo = models.ImageField(null=True, blank=True, verbose_name="Фото", upload_to="curses/", default='img_3.jpg')
     name = models.CharField(max_length=128, default='name', verbose_name="Название")
     description = models.TextField(null=True, blank=True, verbose_name="Описание")
     date_of_start = models.DateField("Дата начала")
@@ -155,6 +171,11 @@ class Courses(models.Model):
     field_of_activity = models.ForeignKey(FieldOfActivity, null=True, blank=True, on_delete=models.SET_NULL,
                                           verbose_name="Сфера деятельноси")
 
+    @property
+    def image_url(self):
+        if self.photo and hasattr(self.photo, 'url'):
+            return self.photo.url
+
     def __str__(self):
         return self.name
 
@@ -165,7 +186,7 @@ class Courses(models.Model):
 
 # Мероприятие
 class Event(models.Model):
-    photo = models.ImageField(null=True, blank=True, verbose_name="Фото")
+    photo = models.ImageField(null=True, blank=True, verbose_name="Фото", upload_to="event/", default='img_3.jpg')
     name = models.CharField(max_length=128, default='name', verbose_name="Название")
     description = models.TextField(null=True, blank=True, verbose_name="Описание")
     date_of_start = models.DateField("Дата начала")
@@ -173,6 +194,11 @@ class Event(models.Model):
     author = models.CharField(max_length=128, null=True, blank=True, verbose_name="Организатор")
     count_place = models.IntegerField("Количество мест")
     place = models.TextField("Место проведения")
+
+    @property
+    def image_url(self):
+        if self.photo and hasattr(self.photo, 'url'):
+            return self.photo.url
 
     def __str__(self):
         return self.name
