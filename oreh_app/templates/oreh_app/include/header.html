@@ -30,10 +30,15 @@
                         </li>
 
                         <li><a href="#portfolio-section" class="nav-link"></a></li>
-                        <li><a href="{% url 'residents' %}" class="nav-link">Резиденты</a></li>
+                        <li><a href="{% url 'oreh_app:residents' %}" class="nav-link">Резиденты</a></li>
                         <li><a href="#" class="nav-link">Выпускники</a></li>
                         <li><a href="#" class="nav-link">Курсы</a></li>
                         <li><a href="#contact-section" class="nav-link">Контакты</a></li>
+                        {% if user.is_authenticated %}
+                                Hello, {{ user.username }}.
+                        {% else %}
+                            <li><a href = "{% url 'users:login' %}"/> Войти </a></li>
+                        {% endif %}
                     </ul>
                 </nav>
             </div>

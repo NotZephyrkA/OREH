@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'oreh_app/base.html' %}
 {% load static %}
 {% block content %}
 <section class="site-section" id="blog-section">
@@ -17,7 +17,7 @@
                     </a>
                     <h2 class="font-size-regular"><a href="#">{{resident.name}}</a></h2>
                     <p>{{resident.description|truncatechars:100}}</p>
-                    <p><a href="{% url 'resident' resident.id %}">Continue Reading...</a></p>
+                    <p><a href="{% url 'oreh_app:resident' resident.id %}">Continue Reading...</a></p>
                 </div>
             </div>
             {% endfor %}
