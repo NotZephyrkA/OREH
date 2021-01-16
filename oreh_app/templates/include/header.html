@@ -1,39 +1,50 @@
 <header class="site-navbar py-4 js-sticky-header site-navbar-target" role="banner">
+    <style>
+    header {
+        background: #fff;
+    }
+    .sticky-wrapper .site-navbar .site-menu > li > a {
+        color: rgba(0, 0, 0, 0.7) !important;
+    }
+    .sticky-wrapper .site-navbar .site-menu > li > a:hover {
+            color: rgba(0, 123, 255, 0.7) !important;
+    }
+    .sticky-wrapper .site-navbar .site-logo a {
+        color: #007bff;
+    }
+
+    </style>
 
     <div class="container">
         <div class="row align-items-center">
 
             <div class="col-6 col-xl-2">
-                <h1 class="mb-0 site-logo"><a href="index.html" class="mb-0">Oreh</a></h1>
+                <h1 class="mb-0 site-logo"><a href="{% url 'index' %}" class="mb-0">Oreh</a></h1>
             </div>
 
             <div class="col-12 col-md-10 d-none d-xl-block">
                 <nav class="site-navigation position-relative text-right" role="navigation">
 
                     <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
-                        <li><a href="#home-section" class="nav-link">Home</a></li>
+                        <li><a href="{% url 'index' %}#home-section" class="nav-link">Home</a></li>
                         <li class="has-children">
-                            <a href="#about-section" class="nav-link">О бизнес-инкубаторе</a>
+                            <a href="{% url 'index' %}#about-section" class="nav-link">О бизнес-инкубаторе</a>
                             <ul class="dropdown">
-                                <li><a href="#team-section" class="nav-link">Team</a></li>
-                                <li><a href="#pricing-section" class="nav-link">Pricing</a></li>
-                                <li><a href="#faq-section" class="nav-link">FAQ</a></li>
-                                <li class="has-children">
-                                    <a href="#">More Links</a>
-                                    <ul class="dropdown">
-                                        <li><a href="#">Menu One</a></li>
-                                        <li><a href="#">Menu Two</a></li>
-                                        <li><a href="#">Menu Three</a></li>
-                                    </ul>
+                                <li><a href="{% url 'index' %}#info" class="nav-link">OREH - это...</a></li>
+                                <li><a href="{% url 'index' %}#achievement-section" class="nav-link">Достижения СВФУ</a>
                                 </li>
+                                <li><a href="{% url 'index' %}#pricing-section" class="nav-link">Услуги</a></li>
+                                <li><a href="{% url 'index' %}#question-section" class="nav-link">Популярные вопросы</a>
+                                </li>
+                                <li><a href="{% url 'index' %}#contact-section" class="nav-link">Контакты</a></li>
                             </ul>
                         </li>
 
                         <li><a href="#portfolio-section" class="nav-link"></a></li>
                         <li><a href="{% url 'residents' %}" class="nav-link">Резиденты</a></li>
-                        <li><a href="#" class="nav-link">Выпускники</a></li>
-                        <li><a href="#" class="nav-link">Курсы</a></li>
-                        <li><a href="#contact-section" class="nav-link">Контакты</a></li>
+                        <li><a href="{% url 'graduates' %}" class="nav-link">Выпускники</a></li>
+                        <li><a href="{% url 'courses' %}" class="nav-link">Курсы</a></li>
+                        <li><a href="{% url 'index' %}#contact-section" class="nav-link">Контакты</a></li>
                     </ul>
                 </nav>
             </div>

@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
 <section class="site-section" id="about-section">
     <div class="container">
         <div class="row mb-5">
@@ -32,5 +28,4 @@
         {% endif %}
     </div>
 </section>
-</body>
-</html>
+{% endblock content %}
