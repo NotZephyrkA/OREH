@@ -9,4 +9,7 @@ urlpatterns = [
     path('current_project/', views.CurrentProjectsView.as_view(), name='current_project'),
     re_path(r'projects/(?P<project_id>\d+)/', views.ProjectView.as_view(), name="project"),
     re_path(r'residents/(?P<resident_id>\d+)/', views.ResidentView.as_view(), name="resident"),
+    path('graduates/', views.GraduatesView.as_view()),
+    path('courses/', views.CoursesView.as_view()),
+    re_path(r'^courses/(?P<course_id>\d+)/$', views.CourseView.as_view(), name='course'),
 ]
