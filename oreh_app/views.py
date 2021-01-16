@@ -9,8 +9,9 @@ class IndexView(View):
         achievements = Achievement.objects.all().order_by('date')[:10]
         services = Services.objects.all()
         questions = Questions.objects.all()
+        current_projects = Project.objects.all()[:10]
         return render(request, 'index.html',
-                      {'achievements': achievements, 'services': services, 'questions': questions})
+                      {'achievements': achievements, 'services': services, 'questions': questions, 'current_projects': current_projects})
 
 
 class ResidentsView(View):
