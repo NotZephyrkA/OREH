@@ -41,3 +41,8 @@ class AchievementView(View):
     def get(self, request):
         achievements = Achievement.objects.all()
         return render(request, 'oreh_app/achievements.html', {'achievements': achievements})
+
+
+class PersonalAccount(View):
+    def get(self, request):
+        return render(request, 'oreh_app/personal-account.html')

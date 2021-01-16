@@ -1,6 +1,7 @@
 from django.urls import path, re_path
 
 from oreh_app import views
+
 app_name = 'oreh_app'
 
 urlpatterns = [
@@ -10,4 +11,5 @@ urlpatterns = [
     path('current_project/', views.CurrentProjectsView.as_view(), name='current_project'),
     re_path(r'projects/(?P<project_id>\d+)/', views.ProjectView.as_view(), name="project"),
     re_path(r'residents/(?P<resident_id>\d+)/', views.ResidentView.as_view(), name="resident"),
+    path('personal_account/', views.PersonalAccount.as_view(), name='personal_account')
 ]
