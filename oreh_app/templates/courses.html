@@ -6,29 +6,31 @@
 </head>
 <body>
 <section class="site-section" id="blog-section">
-      <div class="container">
+    <div class="container">
         <div class="row mb-5">
-          <div class="col-12 text-center aos-init aos-animate" data-aos="fade">
-            <h2 class="section-title mb-3">Курсы</h2>
-          </div>
+            <div class="col-12 text-center aos-init aos-animate" data-aos="fade">
+                <h2 class="section-title mb-3">Курсы</h2>
+            </div>
         </div>
 
         <div class="row">r
-	{% for curse in curses %}
-          <div class="col-md-6 col-lg-4 mb-4 mb-lg-4 aos-init aos-animate" data-aos="fade-up" data-aos-delay="">
-            <div class="h-entry">
-              <a href="single.html">
-                <img src="/static/images/person_8.jpg" alt="Image" class="img-fluid">
-              </a>
-              <h2 class="font-size-regular"><a href="#">curse.name</a></h2>
-              <div class="meta mb-4">curse.place <span class="mx-2">•</span> curse.date_of_start<span class="mx-2">•</span> curse.date_of_end<span class="mx-2">•</span> <a href="#">curse.field_of_activity</a></div>
-              <p>curse.description</p>
-              <p><a href="#">Continue Reading...</a></p>
+            {% for course in courses %}
+            <div class="col-md-6 col-lg-4 mb-4 mb-lg-4 aos-init aos-animate" data-aos="fade-up" data-aos-delay="">
+                <div class="h-entry">
+                    <a href="single.html">
+                        <img src="{{course.image_url}}" alt="Image" class="img-fluid">
+                    </a>
+                    <h2 class="font-size-regular"><a href="#">{{course.name}}</a></h2>
+                    <div class="meta mb-4">{{course.place}}<span class="mx-2">•</span> {{course.date_of_start}}<span
+                            class="mx-2">•</span> {{course.date_of_end}}{% if course.field_of_activity is not None  %} <span class="mx-2">•</span>  <a href="#">{{course.field_of_activity}}</a> {% endif %}
+                    </div>
+                    <p>{{course.description}}</p>
+                    <p><a href="{% url 'course' course.id %}">Continue Reading...</a></p>
+                </div>
             </div>
-          </div>
-          {% endfor %}
+            {% endfor %}
         </div>
-      </div>
-    </section>
+    </div>
+</section>
 </body>
 </html>

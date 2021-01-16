@@ -16,12 +16,12 @@ class GraduatesView(View):
 
 
 class CoursesView(View):
-    def all(self, request, course_id):
-        course = Courses.object.get(id=course_id)
-        return render(request, 'courses.html', {'course': course})
+    def get(self, request):
+        courses = Courses.objects.all()
+        return render(request, 'courses.html', {'courses': courses})
 
 
 class CourseView(View):
-    def get(self, request,):
-        course = Courses.object.all()
-        return render(request, 'courses.html', {'course': course})
+    def get(self, request, course_id):
+        course = Courses.objects.get(id=course_id)
+        return render(request, 'course.html', {'course': course})

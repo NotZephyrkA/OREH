@@ -10,69 +10,26 @@
         <div class="row mb-5">
             <div class="col-12 text-center">
                 <h2 class="section-title mb-3">{{course.name}}</h2>
-                <h4>{{course.dateOfStart}} - {{course.dateOfCompletion}}</h4>
-                <h4>Сфера деятельности: {{course.fieldOfActivity}}</h4>
+                <h4>{{course.date_of_start}} - {{course.date_of_end}}</h4>
+                {% if course.field_of_activity is not None %}
+                <h4>Сфера деятельности: {{course.field_of_activity}}</h4>
+                {% endif %}
+                <h4>Количество мест: {{course.count_place}}</h4>
+                <h4>Место проведения: {{course.place}}</h4>
+                {% if course.author %}
+                <h4>Автор: {{course.author}}</h4>
+                {% endif %}
             </div>
         </div>
-        <p>{{course.annotation}}</p>
+        <p>{{course.description}}</p>
+        {% if course.requirement %}
         <div class="row mb-5">
             <div class="col-12 text-center">
-                <h3>Описание проблемы</h3>
+                <h3>Требования к кандидату</h3>
             </div>
-            <p>{{course.descriptionOfTheProblem}}</p>
+            <p>{{course.requirement}}</p>
         </div>
-        <div class="row mb-5">
-            <div class="col-12 text-center">
-                <h3>Решение проблемы</h3>
-            </div>
-            <p>{{course.solutionToTheProblem}}</p>
-        </div>
-        <div class="row mb-5">
-            <div class="col-12 text-center">
-                <h3>Приемущества решения</h3>
-            </div>
-            <p>{{course.solutionBenefits}}</p>
-        </div>
-        <div class="row mb-5">
-            <div class="col-12 text-center">
-                <h3>Финансовый план</h3>
-            </div>
-            <p>{{course.financialPlan}}</p>
-        </div>
-        <div class="row mb-5">
-            <div class="col-12 text-center">
-                <h3>Бизнес модель</h3>
-            </div>
-            <p>{{course.businessModel}}</p>
-        </div>
-        <div class="row mb-5">
-            <div class="col-12 text-center">
-                <h3>Участники</h3>
-            </div>
-        </div>
-        <div class="row mb-5">
-            <div class="row">
-                {% for participant in course.participants.all %}
-                <div class="col-md-6 col-lg-3 mb-4 aos-init aos-animate" data-aos="fade-up" data-aos-delay="">
-                    <div class="team-member">
-                        <figure>
-                            <ul class="social">
-                                <li><a href="#"><span class="icon-facebook"></span></a></li>
-                                <li><a href="#"><span class="icon-twitter"></span></a></li>
-                                <li><a href="#"><span class="icon-telegram"></span></a></li>
-                                <li><a href="#"><span class="icon-instagram"></span></a></li>
-                            </ul>
-                            <img src="{{participant.image_url}}" alt="Image" class="img-fluid" height="200" width="200">
-                        </figure>
-                        <div class="p-3">
-                            <h3>{{participant}}</h3>
-                            <span class="position">{{participant.position}}</span>
-                        </div>
-                    </div>
-                </div>
-                {% endfor %}
-            </div>
-        </div>
+        {% endif %}
     </div>
 </section>
 </body>
