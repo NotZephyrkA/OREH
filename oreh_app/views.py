@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views.generic.base import View
 
-from oreh_app.models import Achievement, Services, Questions, Resident, Project, Graduate, Courses
+from oreh_app.models import Achievement, Services, Questions, Resident, Project, Graduate, Courses, Event
 
 
 class IndexView(View):
@@ -42,7 +42,7 @@ class AchievementView(View):
         achievements = Achievement.objects.all()
         return render(request, 'achievements.html', {'achievements': achievements})
 
-    def get(self,request):
+    def get(self, request):
         return render(request, 'index.html')
 
 
@@ -62,3 +62,9 @@ class CourseView(View):
     def get(self, request, course_id):
         course = Courses.objects.get(id=course_id)
         return render(request, 'course.html', {'course': course})
+
+
+class EventsView(View):
+    def get(self, request):
+        events = Event.objects.all()
+        return render(request, 'events.html', {'events': events})
