@@ -1,7 +1,8 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.views.generic.base import View
 
-from oreh_app.models import Achievement, Services, Questions, Resident, Project
+from oreh_app.models import Achievement, Services, Questions, Resident, Project, Profile
 
 
 class IndexView(View):
@@ -43,6 +44,17 @@ class AchievementView(View):
         return render(request, 'oreh_app/achievements.html', {'achievements': achievements})
 
 
+
 class PersonalAccount(View):
+    @login_required
     def get(self, request):
-        return render(request, 'oreh_app/personal-account.html')
+        profile = Profile.objects.get(user=request.user)
+        resident = profile.resident
+        context = {}
+        if resident is not None:
+            project = resident.project.get()
+            context['project'] = project
+        else:
+            context['project'] = None
+
+        return render(request, 'oreh_app/personal-account.html', context)

@@ -10,58 +10,58 @@
 
                         <section class="section summary-section">
                             <h2 class="section-title"><i class="fa fa-user"></i>Проект</h2>
+                            {% if project is not None %}
                             <div class="summary">
-                                {% for current_project in user.profile.resident.project %}
                                 <div class="col-md-6 col-lg-4 mb-4 mb-lg-4 aos-init aos-animate" data-aos="fade-up"
                                      data-aos-delay="">
                                     <div class="h-entry">
-                                        <img src="{{current_project.image_url}}" alt="Image" class="img-fluid"
+                                        <img src="{{project.image_url}}" alt="Image" class="img-fluid"
                                              height="200" width="200">
-                                        <h2 class="font-size-regular">{{current_project.name}}</h2>
-                                        <p>{{current_project.annotation|truncatechars:100}}</p>
-                                        <p><a href="{% url 'project' current_project.id %}">Continue Reading...</a></p>
+                                        <h2 class="font-size-regular">{{project.name}}</h2>
+                                        <p>{{project.annotation|truncatechars:100}}</p>
+                                        <p><a href="{% url 'project' project.id %}">Continue Reading...</a></p>
                                     </div>
                                 </div>
-                                {% endfor %}
                             </div><!--//summary-->
+                            {% endif %}
                         </section><!--//section-->
 
-                        <section class="section experiences-section">
-                            <h2 class="section-title"><i class="fa fa-briefcase"></i>Мероприятие</h2>
-                            <div class="summary">
-                                {% for event in user.profile.events %}
-                                <div class="col-md-6 col-lg-4 mb-4 mb-lg-4 aos-init aos-animate" data-aos="fade-up"
-                                     data-aos-delay="">
-                                    <div class="h-entry">
-                                        <img src="{{event.image_url}}" alt="Image" class="img-fluid"
-                                             height="200" width="200">
-                                        <h2 class="font-size-regular">{{event.name}}</h2>
-                                        <p>{{event.annotation|truncatechars:100}}</p>
-                                        <p><a href="{% url 'project' current_project.id %}">Continue Reading...</a></p>
-                                    </div>
-                                </div>
-                                {% endfor %}
-                            </div><!--//summary-->
+<!--                        <section class="section experiences-section">-->
+<!--                            <h2 class="section-title"><i class="fa fa-briefcase"></i>Мероприятие</h2>-->
+<!--                            <div class="summary">-->
+<!--                                {% for event in user.profile.events %}-->
+<!--                                <div class="col-md-6 col-lg-4 mb-4 mb-lg-4 aos-init aos-animate" data-aos="fade-up"-->
+<!--                                     data-aos-delay="">-->
+<!--                                    <div class="h-entry">-->
+<!--                                        <img src="{{event.image_url}}" alt="Image" class="img-fluid"-->
+<!--                                             height="200" width="200">-->
+<!--                                        <h2 class="font-size-regular">{{event.name}}</h2>-->
+<!--                                        <p>{{event.annotation|truncatechars:100}}</p>-->
+<!--                                        <p><a href="{% url 'project' current_project.id %}">Continue Reading...</a></p>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                                {% endfor %}-->
+<!--                            </div>&lt;!&ndash;//summary&ndash;&gt;-->
 
-                        </section><!--//section-->
+<!--                        </section>&lt;!&ndash;//section&ndash;&gt;-->
 
-                        <section class="section projects-section">
-                            <h2 class="section-title"><i class="fa fa-archive"></i>Курсы</h2>
-                            <div class="summary">
-                                {% for current_project in user.profile.courses %}
-                                <div class="col-md-6 col-lg-4 mb-4 mb-lg-4 aos-init aos-animate" data-aos="fade-up"
-                                     data-aos-delay="">
-                                    <div class="h-entry">
-                                        <img src="{{current_project.image_url}}" alt="Image" class="img-fluid"
-                                             height="200" width="200">
-                                        <h2 class="font-size-regular">{{current_project.name}}</h2>
-                                        <p>{{current_project.annotation|truncatechars:100}}</p>
-                                        <p><a href="{% url 'project' current_project.id %}">Continue Reading...</a></p>
-                                    </div>
-                                </div>
-                                {% endfor %}
-                            </div><!--//summary-->
-                        </section><!--//section-->
+<!--                        <section class="section projects-section">-->
+<!--                            <h2 class="section-title"><i class="fa fa-archive"></i>Курсы</h2>-->
+<!--                            <div class="summary">-->
+<!--                                {% for current_project in user.profile.courses.all %}-->
+<!--                                <div class="col-md-6 col-lg-4 mb-4 mb-lg-4 aos-init aos-animate" data-aos="fade-up"-->
+<!--                                     data-aos-delay="">-->
+<!--                                    <div class="h-entry">-->
+<!--                                        <img src="{{current_project.image_url}}" alt="Image" class="img-fluid"-->
+<!--                                             height="200" width="200">-->
+<!--                                        <h2 class="font-size-regular">{{current_project.name}}</h2>-->
+<!--                                        <p>{{current_project.annotation|truncatechars:100}}</p>-->
+<!--                                        <p><a href="{% url 'project' current_project.id %}">Continue Reading...</a></p>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                                {% endfor %}-->
+<!--                            </div>&lt;!&ndash;//summary&ndash;&gt;-->
+<!--                        </section>&lt;!&ndash;//section&ndash;&gt;-->
 
 
                     </div><!--//main-body--></div>
@@ -69,7 +69,7 @@
                     <div class="sidebar-wrapper">
                         <div class="profile-container">
                             <img class="profile" src="assets/images/profile.png" alt=""/>
-                            <h1 class="name">{ {user.name} }</h1>
+<!--                            <h1 class="name">{ {user.name} }</h1>-->
                             <h3 class="tagline">Full Stack Developer</h3>
                         </div><!--//profile-container-->
 
