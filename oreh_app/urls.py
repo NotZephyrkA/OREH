@@ -13,4 +13,6 @@ urlpatterns = [
     path('courses/', views.CoursesView.as_view(), name="courses"),
     re_path(r'^courses/(?P<course_id>\d+)/$', views.CourseView.as_view(), name='course'),
     path('events/', views.EventsView.as_view(), name='events'),
+    re_path(r'events/(?P<event_id>\d+)/', views.EventsView.as_view(), name="event"),
+    path('calendar/', views.CalendarView.as_view(), name='calendar'),
 ]
