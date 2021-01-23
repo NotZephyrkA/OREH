@@ -44,17 +44,15 @@ class AchievementView(View):
         return render(request, 'oreh_app/achievements.html', {'achievements': achievements})
 
 
-
 class PersonalAccount(View):
-    @login_required
     def get(self, request):
-        profile = Profile.objects.get(user=request.user)
-        resident = profile.resident
-        context = {}
-        if resident is not None:
-            project = resident.project.get()
-            context['project'] = project
-        else:
-            context['project'] = None
+        # profile = Profile.objects.get(user=request.user)
+        # resident = profile.resident
+        # context = {}
+        # if resident is not None:
+        #     project = resident.project.get()
+        #     context['project'] = project
+        # else:
+        #     context['project'] = None
 
-        return render(request, 'oreh_app/personal-account.html', context)
+        return render(request, 'oreh_app/personal-account.html')

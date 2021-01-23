@@ -1,75 +1,65 @@
 {% extends 'oreh_app/base.html' %}
 {% load static %}
 {% block content %}
-<section class="site-section bg-light" id="feat">
+<section class="site-section">
     <div class="wrapper">
         <div class="container">
             <div class="row">
                 <div class="col-md-8">
-                    <div class="main-wrapper">
-
-                        <section class="section summary-section">
-                            <h2 class="section-title"><i class="fa fa-user"></i>Проект</h2>
-                            {% if project is not None %}
-                            <div class="summary">
-                                <div class="col-md-6 col-lg-4 mb-4 mb-lg-4 aos-init aos-animate" data-aos="fade-up"
-                                     data-aos-delay="">
-                                    <div class="h-entry">
-                                        <img src="{{project.image_url}}" alt="Image" class="img-fluid"
-                                             height="200" width="200">
-                                        <h2 class="font-size-regular">{{project.name}}</h2>
-                                        <p>{{project.annotation|truncatechars:100}}</p>
-                                        <p><a href="{% url 'project' project.id %}">Continue Reading...</a></p>
-                                    </div>
+                    <section class="section summary-section">
+                        <h2 class="section-title"><i class="fa fa-user"></i>Проект</h2>
+                        <div class="summary">
+                            <div class="col-md-6 col-lg-4 mb-4 mb-lg-4 aos-init aos-animate" data-aos="fade-up"
+                                 data-aos-delay="">
+                                <div class="h-entry">
+                                    <img src="{{user.profile.resident.project.image_url}}" alt="Image" class="img-fluid"
+                                         height="200" width="200">
+                                    <h2 class="font-size-regular">{{user.profile.resident.project.name}}</h2>
+                                    <p>{{user.profile.resident.project.annotation|truncatechars:100}}</p>
                                 </div>
-                            </div><!--//summary-->
-                            {% endif %}
-                        </section><!--//section-->
+                            </div>
+                        </div><!--//summary-->
+                    </section><!--//section-->
 
-<!--                        <section class="section experiences-section">-->
-<!--                            <h2 class="section-title"><i class="fa fa-briefcase"></i>Мероприятие</h2>-->
-<!--                            <div class="summary">-->
-<!--                                {% for event in user.profile.events %}-->
-<!--                                <div class="col-md-6 col-lg-4 mb-4 mb-lg-4 aos-init aos-animate" data-aos="fade-up"-->
-<!--                                     data-aos-delay="">-->
-<!--                                    <div class="h-entry">-->
-<!--                                        <img src="{{event.image_url}}" alt="Image" class="img-fluid"-->
-<!--                                             height="200" width="200">-->
-<!--                                        <h2 class="font-size-regular">{{event.name}}</h2>-->
-<!--                                        <p>{{event.annotation|truncatechars:100}}</p>-->
-<!--                                        <p><a href="{% url 'project' current_project.id %}">Continue Reading...</a></p>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                                {% endfor %}-->
-<!--                            </div>&lt;!&ndash;//summary&ndash;&gt;-->
+                    <section class="section projects-section">
+                        <h2 class="section-title"><i class="fa fa-briefcase"></i>Мероприятие</h2>
+                        <div class="summary">
+                            {% for event in user.profile.events.all %}
+                            <div class="col-md-6 col-lg-4 mb-4 mb-lg-4 aos-init aos-animate" data-aos="fade-up"
+                                 data-aos-delay="">
+                                <div class="h-entry">
+                                    <img src="{{event.image_url}}" alt="Image" class="img-fluid"
+                                         height="200" width="200">
+                                    <h2 class="font-size-regular">{{event.name}}</h2>
+                                    <p>{{event.description|truncatechars:100}}</p>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div><!--//summary-->
 
-<!--                        </section>&lt;!&ndash;//section&ndash;&gt;-->
+                    </section><!--//section-->
 
-<!--                        <section class="section projects-section">-->
-<!--                            <h2 class="section-title"><i class="fa fa-archive"></i>Курсы</h2>-->
-<!--                            <div class="summary">-->
-<!--                                {% for current_project in user.profile.courses.all %}-->
-<!--                                <div class="col-md-6 col-lg-4 mb-4 mb-lg-4 aos-init aos-animate" data-aos="fade-up"-->
-<!--                                     data-aos-delay="">-->
-<!--                                    <div class="h-entry">-->
-<!--                                        <img src="{{current_project.image_url}}" alt="Image" class="img-fluid"-->
-<!--                                             height="200" width="200">-->
-<!--                                        <h2 class="font-size-regular">{{current_project.name}}</h2>-->
-<!--                                        <p>{{current_project.annotation|truncatechars:100}}</p>-->
-<!--                                        <p><a href="{% url 'project' current_project.id %}">Continue Reading...</a></p>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                                {% endfor %}-->
-<!--                            </div>&lt;!&ndash;//summary&ndash;&gt;-->
-<!--                        </section>&lt;!&ndash;//section&ndash;&gt;-->
-
-
-                    </div><!--//main-body--></div>
+                    <section class="section projects-section">
+                        <h2 class="section-title"><i class="fa fa-archive"></i>Курсы</h2>
+                        <div class="summary">
+                            {% for course in user.profile.courses.all %}
+                            <div class="col-md-6 col-lg-4 mb-4 mb-lg-4 aos-init aos-animate">
+                                <div class="h-entry">
+                                    <img src="{{course.image_url}}" alt="Image" class="img-fluid"
+                                         height="200" width="200">
+                                    <h2 class="font-size-regular">{{course.name}}</h2>
+                                    <p>{{course.description|truncatechars:100}}</p>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div><!--//summary-->
+                    </section><!--//section-->
+                </div>
                 <div class="col-md-4">
                     <div class="sidebar-wrapper">
                         <div class="profile-container">
                             <img class="profile" src="assets/images/profile.png" alt=""/>
-<!--                            <h1 class="name">{ {user.name} }</h1>-->
+                            <h1 class="name">{{user.username}}</h1>
                             <h3 class="tagline">Full Stack Developer</h3>
                         </div><!--//profile-container-->
 
@@ -123,11 +113,9 @@
                         </div><!--//interests-->
 
                     </div><!--//sidebar-wrapper--></div>
-
             </div>
         </div>
-
-
+    </div>
     </div>
 </section>
 {% endblock content %}
