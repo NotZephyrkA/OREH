@@ -194,6 +194,7 @@ class Event(models.Model):
     author = models.CharField(max_length=128, null=True, blank=True, verbose_name="Организатор")
     count_place = models.IntegerField("Количество мест")
     place = models.TextField("Место проведения")
+    registration_link = models.TextField("Ссылка на регистарцию")
 
     @property
     def image_url(self):

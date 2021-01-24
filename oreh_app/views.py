@@ -69,10 +69,10 @@ class EventsView(View):
         events = Event.objects.all()
         return render(request, 'events.html', {'events': events})
 
-    class EventView(View):
-        def get(self, request, event_id):
-            event = Event.objects.get(id=event_id)
-            return render(request, 'event.html', {'event': event})
+class EventView(View):
+    def get(self, request, event_id):
+        event = Event.objects.get(id=event_id)
+        return render(request, 'event.html', {'event': event})
 
 
 from datetime import datetime, date
