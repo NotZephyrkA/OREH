@@ -2,6 +2,8 @@ from django.urls import path, re_path
 
 from oreh_app import views
 
+app_name = 'oreh_app'
+
 urlpatterns = [
     path('', views.IndexView.as_view(), name='index'),
     re_path(r'achievements/', views.AchievementView.as_view(), name='achievements'),
@@ -15,4 +17,5 @@ urlpatterns = [
     path('events/', views.EventsView.as_view(), name='events'),
     re_path(r'events/(?P<event_id>\d+)/', views.EventView.as_view(), name="event"),
     path('calendar/', views.CalendarView.as_view(), name='calendar'),
+    path('personal_account/', views.PersonalAccount.as_view(), name='personal_account')
 ]

@@ -1,7 +1,8 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.views.generic.base import View
 
-from oreh_app.models import Achievement, Services, Questions, Resident, Project, Graduate, Courses, Event
+from oreh_app.models import Achievement, Services, Questions, Resident, Project, Profile, Graduate, Courses, Event
 
 
 class IndexView(View):
@@ -9,70 +10,75 @@ class IndexView(View):
         achievements = Achievement.objects.all().order_by('date')[:10]
         services = Services.objects.all()
         questions = Questions.objects.all()
-        return render(request, 'index.html',
+        return render(request, 'oreh_app/index.html',
                       {'achievements': achievements, 'services': services, 'questions': questions})
 
 
 class ResidentsView(View):
     def get(self, request):
         residents = Resident.objects.all()
-        return render(request, 'residents.html', {'residents': residents})
+        return render(request, 'oreh_app/residents.html', {'residents': residents})
 
 
 class CurrentProjectsView(View):
     def get(self, request):
         current_projects = Project.objects.all()
-        return render(request, 'current projects.html', {'current_projects': current_projects})
+        return render(request, 'oreh_app/current projects.html', {'current_projects': current_projects})
 
 
 class ProjectView(View):
     def get(self, request, project_id):
         project = Project.objects.get(id=project_id)
-        return render(request, 'project.html', {'project': project})
+        return render(request, 'oreh_app/project.html', {'project': project})
 
 
 class ResidentView(View):
     def get(self, request, resident_id):
         resident = Resident.objects.get(id=resident_id)
-        return render(request, 'resident.html', {'resident': resident})
+        return render(request, 'oreh_app/resident.html', {'resident': resident})
 
 
 class AchievementView(View):
     def get(self, request):
         achievements = Achievement.objects.all()
-        return render(request, 'achievements.html', {'achievements': achievements})
+        return render(request, 'oreh_app/achievements.html', {'achievements': achievements})
+
+
+class PersonalAccount(View):
+    def get(self, request):
+        return render(request, 'oreh_app/personal-account.html')
 
     def get(self, request):
-        return render(request, 'index.html')
+        return render(request, 'oreh_app/index.html')
 
 
 class GraduatesView(View):
     def get(self, request):
         graduates = Graduate.objects.all()
-        return render(request, 'graduates.html', {'graduates': graduates})
+        return render(request, 'oreh_app/graduates.html', {'graduates': graduates})
 
 
 class CoursesView(View):
     def get(self, request):
         courses = Courses.objects.all()
-        return render(request, 'courses.html', {'courses': courses})
+        return render(request, 'oreh_app/courses.html', {'courses': courses})
 
 
 class CourseView(View):
     def get(self, request, course_id):
         course = Courses.objects.get(id=course_id)
-        return render(request, 'course.html', {'course': course})
+        return render(request, 'oreh_app/course.html', {'course': course})
 
 
 class EventsView(View):
     def get(self, request):
         events = Event.objects.all()
-        return render(request, 'events.html', {'events': events})
+        return render(request, 'oreh_app/events.html', {'events': events})
 
 class EventView(View):
     def get(self, request, event_id):
         event = Event.objects.get(id=event_id)
-        return render(request, 'event.html', {'event': event})
+        return render(request, 'oreh_app/event.html', {'event': event})
 
 
 from datetime import datetime, date
@@ -87,7 +93,7 @@ from .utils import Calendar
 
 class CalendarView(generic.ListView):
     model = Event
-    template_name = 'calendar.html'
+    template_name = 'oreh_app/calendar.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

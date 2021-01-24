@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'oreh_app/base.html' %}
 {% load static %}
 {% block content %}
 <section class="site-section" id="blog-section">
@@ -15,7 +15,7 @@
                     <img src="{{current_project.image_url}}" alt="Image" class="img-fluid" height="200" width="200">
                     <h2 class="font-size-regular">{{current_project.name}}</h2>
                     <p>{{current_project.annotation|truncatechars:100}}</p>
-                    <p><a href="{% url 'project' current_project.id %}">Continue Reading...</a></p>
+                    <p><a href="{% url 'oreh_app:project' current_project.id %}">Continue Reading...</a></p>
                 </div>
             </div>
             {% endfor %}

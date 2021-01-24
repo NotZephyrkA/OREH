@@ -1,0 +1,168 @@
+{% extends 'oreh_app/base.html' %}
+{% load static %}
+{% block content %}
+<section class="site-section">
+    <div class="wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <section class="section summary-section">
+                        <h2 class="section-title"><i class="fa fa-user"></i>Проект</h2>
+                        {% if user.profile.resident.project is not None %}
+                        <div class="summary">
+                            <div class="col-md-6 col-lg-4 mb-4 mb-lg-4 aos-init aos-animate" data-aos="fade-up"
+                                 data-aos-delay="">
+                                <div class="h-entry">
+                                    <img src="{{user.profile.resident.project.image_url}}" alt="Image" class="img-fluid"
+                                         height="200" width="200">
+                                    <h2 class="font-size-regular">{{user.profile.resident.project.name}}</h2>
+                                    <p>{{user.profile.resident.project.annotation|truncatechars:100}}</p>
+                                </div>
+                            </div>
+                        </div><!--//summary-->
+                        {% endif %}
+                        <div class="row mb-5">
+                            <div class="col-12 text-center">
+                                <h2 class="section-title mb-3">{{user.profile.resident.project.name}}</h2>
+                                <h4>{{user.profile.resident.project.dateOfStart}} -
+                                    {{user.profile.resident.project.dateOfCompletion}}</h4>
+                                <h4>Сфера деятельности: {{user.profile.resident.project.fieldOfActivity}}</h4>
+                            </div>
+                        </div>
+                        <p>{{user.profile.resident.project.annotation}}</p>
+                        <div class="row mb-5">
+                            <div class="col-12 text-center">
+                                <h3>Описание проблемы</h3>
+                            </div>
+                            <p>{{user.profile.resident.project.descriptionOfTheProblem}}</p>
+                        </div>
+                        <div class="row mb-5">
+                            <div class="col-12 text-center">
+                                <h3>Решение проблемы</h3>
+                            </div>
+                            <p>{{user.profile.resident.project.solutionToTheProblem}}</p>
+                        </div>
+                        <div class="row mb-5">
+                            <div class="col-12 text-center">
+                                <h3>Приемущества решения</h3>
+                            </div>
+                            <p>{{user.profile.resident.project.solutionBenefits}}</p>
+                        </div>
+                        <div class="row mb-5">
+                            <div class="col-12 text-center">
+                                <h3>Финансовый план</h3>
+                            </div>
+                            <p>{{user.profile.resident.project.financialPlan}}</p>
+                        </div>
+                        <div class="row mb-5">
+                            <div class="col-12 text-center">
+                                <h3>Бизнес модель</h3>
+                            </div>
+                            <p>{{user.profile.resident.project.businessModel}}</p>
+                        </div>
+                        <div class="row mb-5">
+                            <div class="col-12 text-center">
+                                <h3>Участники</h3>
+                            </div>
+                        </div>
+                        <div class="row mb-5">
+                            <div class="row">
+                                {% for participant in user.profile.resident.project.participants.all %}
+                                <div class="col-md-6 col-lg-3 mb-4 aos-init aos-animate" data-aos="fade-up"
+                                     data-aos-delay="">
+                                    <div class="team-member">
+                                        <figure>
+                                            <ul class="social">
+                                                <li><a href="#"><span class="icon-facebook"></span></a></li>
+                                                <li><a href="#"><span class="icon-twitter"></span></a></li>
+                                                <li><a href="#"><span class="icon-linkedin"></span></a></li>
+                                                <li><a href="#"><span class="icon-instagram"></span></a></li>
+                                            </ul>
+                                            <img src="{{participant.image_url}}" alt="Image" class="img-fluid"
+                                                 height="200" width="200">
+                                        </figure>
+                                        <div class="p-3">
+                                            <h3>{{participant}}</h3>
+                                            <span class="position">{{participant.position}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </section><!--//section-->
+
+                    <section class="section projects-section">
+                        <h2 class="section-title"><i class="fa fa-briefcase"></i>Мероприятие</h2>
+                        {% if user.profile.events is not None %}
+                        <div class="summary">
+                            {% for event in user.profile.events.all %}
+                            <div class="col-md-6 mb-4 mb-lg-0 col-lg-4" data-aos="fade-up" data-aos-delay="">
+                                <div class="pricing">
+                                    <div class="h-entry">
+                                        <h3 class="text-center text-black">{{event.name}}</h3>
+                                        <!--                        <div class="price text-center mb-4 ">-->
+                                        <!--                            <span><span>$47</span> / year</span>-->
+                                        <!--                        </div>-->
+                                        <p>{{event.description|truncatechars:100}}</p>
+                                        <h6>
+                                            <a href="#contact-section" class='a1'>Смотреть больше</a>
+
+                                        </h6>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div><!--//summary-->
+                        {% endif %}
+                    </section><!--//section-->
+
+                    <section class="section projects-section">
+                        <h2 class="section-title"><i class="fa fa-archive"></i>Курсы</h2>
+                        {% if user.profile.courses is not None %}
+                        <div class="summary">
+                            {% for course in user.profile.courses.all %}
+                            <div class="col-md-6 col-lg-4 mb-4 mb-lg-4 aos-init aos-animate">
+                                <div class="h-entry">
+                                    <img src="{{course.image_url}}" alt="Image" class="img-fluid"
+                                         height="200" width="200">
+                                    <h2 class="font-size-regular">{{course.name}}</h2>
+                                    <p>{{course.description|truncatechars:100}}</p>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div><!--//summary-->
+                        {% endif %}
+                    </section><!--//section-->
+                </div>
+                <div class="col-md-4" id='desc'>
+                    <style>#desc{
+                    background: linear-gradient(135deg, #e55d87 0%, #5fc3e4 100%);
+}
+                    </style>
+                    <div class="sidebar-wrapper">
+                        <div class="profile-container">
+                            <img class="profile" src="{{user.profile.resident.image_url}}" alt=""/>
+                            <h1 class="section-title">{{user.profile.resident.name}}</h1>
+                        </div><!--//profile-container-->
+
+                        <div class="contact-container container-block">
+                            <ul class="list-unstyled contact-list">
+                                <li class="email"><i class="fa fa-envelope"></i><a href="mailto: {{user.email}}">{{user.email}}</a>
+                            </ul>
+                        </div><!--//contact-container-->
+                        <div class="languages-container container-block">
+                            <h2 class="section-title">Описание</h2>
+                            <ul class="list-unstyled interests-list">
+                                <li>{{user.profile.resident.description}}</li>
+                            </ul>
+                        </div><!--//interests-->
+
+
+                    </div><!--//sidebar-wrapper--></div>
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
+{% endblock content %}

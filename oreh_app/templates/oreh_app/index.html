@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'oreh_app/base.html' %}
 {% load static %}
 {% block content %}
 <div class="site-wrap">
@@ -98,7 +98,7 @@
                     </div>
                 </div>
                 {% endfor %}
-                <p class="text-center"><a href="{% url 'achievements' %}">Посмотреть больше...</a></p>
+                <p class="text-center"><a href="{% url 'oreh_app:achievements' %}">Посмотреть больше...</a></p>
             </div>
         </div>
     </div>
