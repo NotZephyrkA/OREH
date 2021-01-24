@@ -20,7 +20,7 @@
                             class="mx-2">•</span> {{course.date_of_end}}{% if course.field_of_activity is not None  %} <span class="mx-2">•</span>  <a href="#">{{course.field_of_activity}}</a> {% endif %}
                     </div>
                     <p>{{course.description|truncatechars:100}}</p>
-                    <p><a href="{% url 'course' course.id %}">Continue Reading...</a></p>
+                    <p><a href="{% url 'oreh_app:course' course.id %}">Continue Reading...</a></p>
                 </div>
             </div>
             {% endfor %}
