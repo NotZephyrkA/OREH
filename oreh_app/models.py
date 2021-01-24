@@ -170,6 +170,7 @@ class Courses(models.Model):
     requirement = models.TextField(null=True, blank=True, verbose_name="Требования к кандидату")
     field_of_activity = models.ForeignKey(FieldOfActivity, null=True, blank=True, on_delete=models.SET_NULL,
                                           verbose_name="Сфера деятельноси")
+    registration_link = models.TextField("Ссылка на регистарцию")
 
     @property
     def image_url(self):
