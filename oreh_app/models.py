@@ -173,6 +173,7 @@ class Courses(models.Model):
     requirement = models.TextField(null=True, blank=True, verbose_name="Требования к кандидату")
     field_of_activity = models.ForeignKey(FieldOfActivity, null=True, blank=True, on_delete=models.SET_NULL,
                                           verbose_name="Сфера деятельноси")
+    registration_link = models.TextField("Ссылка на регистарцию")
 
     @property
     def image_url(self):
@@ -197,6 +198,7 @@ class Event(models.Model):
     author = models.CharField(max_length=128, null=True, blank=True, verbose_name="Организатор")
     count_place = models.IntegerField("Количество мест")
     place = models.TextField("Место проведения")
+    registration_link = models.TextField("Ссылка на регистарцию")
 
     @property
     def image_url(self):

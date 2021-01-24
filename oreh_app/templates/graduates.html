@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<section class="site-section" id="blog-section">
+    <div class="container">
+        <div class="row mb-5">
+            <div class="col-12 text-center aos-init aos-animate">
+                <h2 class="section-title mb-3">Выпускники</h2>
+            </div>
+        </div>
+        <div class="row">
+            {% for graduate in graduates %}
+            <div class="col-md-6 col-lg-4 mb-4 mb-lg-4 aos-init aos-animate" >
+                <div class="h-entry">
+                    <a href="single.html">
+                        <img src="{{graduate.resident.image_url}}" alt="Image" class="img-fluid">
+                    </a>
+                    <h2 class="font-size-regular"><a href="#">{{graduate.resident.name}}</a></h2>
+                    <p>{{graduate.resident.description|truncatechars:100}}</p>
+                    <p><a href="#">Continue Reading...</a></p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock content %}
