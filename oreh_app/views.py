@@ -48,9 +48,6 @@ class PersonalAccount(View):
     def get(self, request):
         return render(request, 'oreh_app/personal-account.html')
 
-    def get(self, request):
-        return render(request, 'oreh_app/index.html')
-
 
 class GraduatesView(View):
     def get(self, request):
