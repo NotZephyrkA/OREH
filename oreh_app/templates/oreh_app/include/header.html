@@ -32,7 +32,6 @@
                 <nav class="site-navigation position-relative text-right" role="navigation">
 
                     <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
-                        <li><a href="{% url 'oreh_app:index' %}#home-section" class="nav-link">Home</a></li>
                         <li class="has-children">
                             <a href="{% url 'oreh_app:index' %}#about-section" class="nav-link">О бизнес-инкубаторе</a>
                             <ul class="dropdown">
@@ -51,16 +50,12 @@
                         <li><a href="{% url 'oreh_app:graduates' %}" class="nav-link">Выпускники</a></li>
                         <li><a href="{% url 'oreh_app:courses' %}" class="nav-link">Курсы</a></li>
                         <li><a href="{% url 'oreh_app:index' %}#contact-section" class="nav-link">Контакты</a></li>
-                        <li><a href="{% url 'oreh_app:residents' %}" class="nav-link">Резиденты</a></li>
-                        <li><a href="#" class="nav-link">Выпускники</a></li>
-                        <li><a href="#" class="nav-link">Курсы</a></li>
-                        <li><a href="#contact-section" class="nav-link">Контакты</a></li>
                         {% if user.is_authenticated %}
                             <li><a href = "{% url 'oreh_app:personal_account' %}"/> Личный кабинет </a></li>
                             <li><a href = "{% url 'users:logout' %}"/> Выйти </a></li>
                         {% else %}
                             <li><a href = "{% url 'users:login' %}"/> Войти </a></li>
-                            <li><a href = "{% url 'users:register' %}"/> Заргистрироваться </a></li>
+                            <li><a href = "{% url 'users:register' %}"/> Зарегистрироваться </a></li>
 
                         {% endif %}
                     </ul>
