@@ -4,7 +4,9 @@
 
 
 {% block content %}
-
+{% block titel %}
+<title>REGISTER</title>
+{% endblock titel %}
 <section class="site-section" id="blog-section">
     <div class="container">
         <form method="post" action="{% url 'users:login' %}" class="form" style="margin-top:10%">
