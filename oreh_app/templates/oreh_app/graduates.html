@@ -1,7 +1,13 @@
 {% extends 'oreh_app/base.html' %}
 {% load static %}
 {% block content %}
+<style>
+    .head{
+        margin-top:40px;
+    }
+</style>
 <section class="site-section" id="blog-section">
+    <div class="head">
     <div class="container">
         <div class="row mb-5">
             <div class="col-12 text-center aos-init aos-animate">
@@ -22,6 +28,7 @@
             </div>
             {% endfor %}
         </div>
+    </div>
     </div>
 </section>
 {% endblock content %}

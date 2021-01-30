@@ -1,29 +1,57 @@
 {% extends 'oreh_app/base.html' %}
 {% load static %}
 {% block content %}
+<style>
+    .head{
+        margin-top:40px;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</style>
 <section class="site-section" id="blog-section">
     <div class="container">
-        <div class="row mb-5">
-            <div class="col-12 text-center aos-init aos-animate" data-aos="fade">
-                <h2 class="section-title mb-3">Курсы</h2>
-            </div>
-        </div>
-        <div class="row">
-            {% for course in courses %}
-            <div class="col-md-6 col-lg-4 mb-4 mb-lg-4 aos-init aos-animate" data-aos="fade-up" data-aos-delay="">
-                <div class="h-entry">
-                    <a href="single.html">
-                        <img src="{{course.image_url}}" alt="Image" class="img-fluid">
-                    </a>
-                    <h2 class="font-size-regular"><a href="#">{{course.name}}</a></h2>
-                    <div class="meta mb-4">{{course.place}}<span class="mx-2">•</span> {{course.date_of_start}}<span
-                            class="mx-2">•</span> {{course.date_of_end}}{% if course.field_of_activity is not None  %} <span class="mx-2">•</span>  <a href="#">{{course.field_of_activity}}</a> {% endif %}
-                    </div>
-                    <p>{{course.description|truncatechars:100}}</p>
-                    <p><a href="{% url 'oreh_app:course' course.id %}">Continue Reading...</a></p>
+        <div class="head">
+            <div class="row mb-5">
+                <div class="col-12 text-center aos-init aos-animate" data-aos="fade">
+                    <h2 class="section-title mb-3">Курсы</h2>
                 </div>
             </div>
-            {% endfor %}
+            <div class="row">
+                {% for course in courses %}
+                <div class="col-md-6 col-lg-4 mb-4 mb-lg-4 aos-init aos-animate" data-aos="fade-up" data-aos-delay="">
+                    <div class="h-entry">
+                        <a href="single.html">
+                            <img src="{{course.image_url}}" alt="Image" class="img-fluid">
+                        </a>
+                        <h2 class="font-size-regular"><a href="#">{{course.name}}</a></h2>
+                        <div class="meta mb-4">{{course.place}}
+                            <span class="mx-2">•</span> {{course.date_of_start}}<span class="mx-2">•</span>
+                            {{course.date_of_end}}
+                            {% if course.field_of_activity is not None %}
+                            <span class="mx-2">•</span> <a href="#">{{course.field_of_activity}}</a>
+                            {% endif %}
+                        </div>
+                        <p>{{course.description|truncatechars:100}}</p>
+                        <p><a href="{% url 'oreh_app:course' course.id %}">Continue Reading...</a></p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
         </div>
     </div>
 </section>
