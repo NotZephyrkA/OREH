@@ -46,6 +46,15 @@ class AchievementView(View):
 
 class PersonalAccount(View):
     def get(self, request):
+        courses = Courses.objects.all()
+        marks_courses={}
+        for course in courses:
+            marks = course.mark_set.all()
+            marks_map={}
+            for mark in marks:
+                marks_map[mark.user]=mark.mark
+            marks_courses[course]=marks_map
+        print(marks_courses)
         return render(request, 'oreh_app/personal-account.html')
 
 

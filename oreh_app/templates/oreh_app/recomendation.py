@@ -23,6 +23,17 @@ critics = {'Lisa Rose': {'1st course': 2.5, '2nd course': 3.5,
            'Vasya Pupkin': {'1st course': 2.5, '2nd course': 3.5, '3rd course': 3.0,
                             '4th course': 3.5, '5th course': 2.5, '6th course': 3.0}
            }
+critics2 = {'1st course': {'Lisa Rose': 2.5, 'Gene Seymour': 3.0, 'Michael Phillips': 2.5, 'Claudia Puig': 3.5,
+                           'Mick LaSalle': 3.0, 'Jack Matthews': 3.0, 'Toby': 4.5, 'Vasya Pupkin': 2.5},
+            '2nd course': {'Lisa Rose': 3.5, 'Gene Seymour': 3.5, 'Michael Phillips': 3.0, 'Claudia Puig': 3.0,
+                           'Mick LaSalle': 4.0, 'Jack Matthews': 4.0, 'Toby': 1.0, 'Vasya Pupkin': 3.5},
+            '3rd course': {'Lisa Rose': 3.0, 'Gene Seymour': 1.5, 'Michael Phillips': 3.5, 'Claudia Puig': 4.5,
+                           'Mick LaSalle': 2.0, 'Jack Matthews': 3.0, 'Toby': 4.0, 'Vasya Pupkin': 3.0},
+            '4th course': {'Lisa Rose': 3.5, 'Gene Seymour': 5.0, 'Michael Phillips': 4.0, 'Claudia Puig': 4.0,
+                           'Mick LaSalle': 3.0, 'Jack Matthews': 5.0, 'Vasya Pupkin': 3.5},
+            '5th course': {'Lisa Rose': 2.5, 'Gene Seymour': 3.0, 'Claudia Puig': 2.5, 'Mick LaSalle': 3.0,
+                           'Jack Matthews': 3.5, 'Vasya Pupkin': 2.5},
+            '6th course': {'Lisa Rose': 3.0, 'Gene Seymour': 3.5, 'Mick LaSalle': 2.0, 'Vasya Pupkin': 3.0}}
 
 
 def sim_distance(prefs, person1, person2):
@@ -96,7 +107,18 @@ def getRecommendations(prefs, person, similarity=sim_pearson):
     return rankings
 
 
+def transformPrefs(prefs):
+    result = {}
+    for person in prefs:
+        for item in prefs[person]:
+            result.setdefault(item, {})
+            # Обменять местами человека и предмет
+            result[item][person] = prefs[person][item]
+    return result
+
+
 print(topMatches(critics, 'Toby'))
 print(getRecommendations(critics, 'Toby'))
 getRecommendations(critics, 'Toby', similarity=sim_distance)
 print(sim_distance(critics, 'Lisa Rose', 'Vasya Pupkin'))
+print(transformPrefs(critics))
