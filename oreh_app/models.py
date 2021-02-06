@@ -188,6 +188,17 @@ class Courses(models.Model):
         verbose_name_plural = "Курсы"
 
 
+# Оценка
+class Mark(models.Model):
+    user = models.ForeignKey(User, verbose_name="Пользователь", on_delete=models.CASCADE)
+    mark = models.IntegerField("Оценка")
+    course = models.ForeignKey(Courses, verbose_name='Курс', on_delete=models.CASCADE)
+
+    class Meta:
+        verbose_name = "Оценка"
+        verbose_name_plural = "Оценки"
+
+
 # Мероприятие
 class Event(models.Model):
     photo = models.ImageField(null=True, blank=True, verbose_name="Фото", upload_to="event/", default='img_3.jpg')
