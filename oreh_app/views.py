@@ -3,6 +3,7 @@ from django.shortcuts import render
 from django.views.generic.base import View
 
 from oreh_app.models import Achievement, Services, Questions, Resident, Project, Profile, Graduate, Courses, Event
+from .recommendations import getRecommendations, topMatches
 
 
 class IndexView(View):
@@ -46,7 +47,17 @@ class AchievementView(View):
 
 class PersonalAccount(View):
     def get(self, request):
-        return render(request, 'oreh_app/personal-account.html')
+        recommendations_map = {}
+        courses = Courses.objects.all()
+        for course in courses:
+            marks = course.mark_set.all()
+            marks_map = {}
+            for mark in marks:
+                marks_map[mark.user] = mark.mark
+            recommendations_map[course] = marks_map
+        user = Profile.objects.get(user=request.user)
+        recommendations = topMatches(recommendations_map, user.user)
+        return render(request, 'oreh_app/personal-account.html', {'recommendations': recommendations})
 
 
 class GraduatesView(View):
@@ -71,6 +82,7 @@ class EventsView(View):
     def get(self, request):
         events = Event.objects.all()
         return render(request, 'oreh_app/events.html', {'events': events})
+
 
 class EventView(View):
     def get(self, request, event_id):
