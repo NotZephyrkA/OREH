@@ -7,6 +7,7 @@
     }
 
 
+
 </style>
 <section class="site-section">
     <div class="head">
@@ -152,8 +153,10 @@
                                     {% endif %}
                                 </div>
                                 <div id="menu1" class="tab-pane fade">
-                                    <h3>Menu 1</h3>
-                                    <p>Some content in menu 1.</p>
+                                    <h3>Рекомендации</h3>
+                                    {% for mark ,course in recommendations %}
+                                    <p> {{recommendation}}</p>
+                                    {% endfor %}
                                 </div>
                                 <div id="menu2" class="tab-pane fade">
                                     <h3>Menu 2</h3>
@@ -167,6 +170,7 @@
                         <style>#desc{
                     background: linear-gradient(135deg, #e55d87 0%, #5fc3e4 100%);
 }
+
 
 
                         </style>
