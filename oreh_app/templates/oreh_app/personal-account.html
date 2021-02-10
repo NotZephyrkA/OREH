@@ -155,7 +155,14 @@
                                 <div id="menu1" class="tab-pane fade">
                                     <h3>Рекомендации</h3>
                                     {% for mark ,course in recommendations %}
-                                    <p> {{recommendation}}</p>
+                                    <div class="col-md-6 col-lg-4 mb-4 mb-lg-4 aos-init aos-animate">
+                                            <div class="h-entry">
+                                                <img src="{{course.image_url}}" alt="Image" class="img-fluid"
+                                                     height="200" width="200">
+                                                <h2 class="font-size-regular">{{course.name}}</h2>
+                                                <p>{{course.description|truncatechars:100}}</p>
+                                            </div>
+                                        </div>
                                     {% endfor %}
                                 </div>
                                 <div id="menu2" class="tab-pane fade">

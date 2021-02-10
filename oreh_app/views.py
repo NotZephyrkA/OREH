@@ -48,18 +48,19 @@ class AchievementView(View):
 class PersonalAccount(View):
     def get(self, request):
         courses = Courses.objects.all()
-        marks_courses={}
+        marks_courses = {}
         for course in courses:
             marks = course.mark_set.all()
-            marks_map={}
+            marks_map = {}
             for mark in marks:
-                marks_map[mark.user]=mark.mark
-            marks_courses[course]=marks_map
+                marks_map[mark.user] = mark.mark
+            marks_courses[course] = marks_map
         profile = Profile.objects.get(user=request.user)
-        recommendations = getRecommendations(transformPrefs(marks_map), profile.user)
+        recommendations = getRecommendations(transformPrefs(marks_courses), profile.user)
+
         # Рекомендации
 
-        return render(request, 'oreh_app/personal-account.html')
+        return render(request, 'oreh_app/personal-account.html', {'recommendations': recommendations})
 
 
 class GraduatesView(View):
@@ -84,6 +85,7 @@ class EventsView(View):
     def get(self, request):
         events = Event.objects.all()
         return render(request, 'oreh_app/events.html', {'events': events})
+
 
 class EventView(View):
     def get(self, request, event_id):
