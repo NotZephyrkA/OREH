@@ -1,7 +1,13 @@
 {% extends 'oreh_app/base.html' %}
 {% load static %}
 {% block content %}
+<style>
+    .head{
+        margin-top:40px;
+    }
+</style>
 <section class="site-section" id="about-section">
+    <div class="head">
     <div class="container">
 
         <div class="row mb-5">
@@ -15,7 +21,7 @@
             <div class="col-12 text-center">
                 <h3>Описание</h3>
             </div>
-            <p>{{graduate.description}}</p>
+            <p>{{graduate.resident.description}}</p>
         </div>
     </div>
 </section>
