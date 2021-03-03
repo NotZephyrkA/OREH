@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.views.generic.base import View
 
 from oreh_app.models import Achievement, Services, Questions, Resident, Project, Profile, Graduate, Courses, Event
-from .recommendations import getRecommendations, topMatches
+from .recommendations import getRecommendations, topMatches, transformPrefs
 
 
 class IndexView(View):
@@ -56,7 +56,7 @@ class PersonalAccount(View):
                 marks_map[mark.user] = mark.mark
             recommendations_map[course] = marks_map
         user = Profile.objects.get(user=request.user)
-        recommendations = topMatches(recommendations_map, user.user)
+        recommendations = getRecommendations(transformPrefs(recommendations_map), user.user)
         return render(request, 'oreh_app/personal-account.html', {'recommendations': recommendations})
 
 
