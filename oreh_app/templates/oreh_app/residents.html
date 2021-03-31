@@ -11,16 +11,14 @@
     <div class="container">
         <div class="row mb-5">
             <div class="col-12 text-center aos-init aos-animate" data-aos="fade">
-                <h2 class="section-title mb-3">Our residents</h2>
+                <h2 class="section-title mb-3">Наши резиденты</h2>
             </div>
         </div>
         <div class="row">
             {% for resident in residents %}
             <div class="col-md-6 col-lg-4 mb-4 mb-lg-4 aos-init aos-animate" data-aos="fade-up" data-aos-delay="">
-                <div class="h-entry">
-                    <a href="single.html">
+                    <div class="h-entry">
                         <img src="{{resident.image_url|default_if_none:'#'}}" alt="Image" class="img-fluid" height="200" width="200">
-                    </a>
                     <h2 class="font-size-regular"><a href="#">{{resident.name}}</a></h2>
                     <p>{{resident.description|truncatechars:100}}</p>
                     <p><a href="{% url 'oreh_app:resident' resident.id %}">Continue Reading...</a></p>

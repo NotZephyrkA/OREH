@@ -140,6 +140,11 @@ class Graduate(models.Model):
     def __str__(self):
         return self.resident.__str__()
 
+    @property
+    def image_url(self):
+        if self.resident.photo and hasattr(self.resident.photo, 'url'):
+            return self.resident.photo.url
+
     class Meta:
         verbose_name = "Выпускник"
         verbose_name_plural = "Выпускники"

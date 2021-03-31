@@ -18,9 +18,7 @@
             {% for graduate in graduates %}
             <div class="col-md-6 col-lg-4 mb-4 mb-lg-4 aos-init aos-animate" >
                 <div class="h-entry">
-                    <a href="single.html">
                         <img src="{{graduate.resident.image_url}}" alt="Image" class="img-fluid">
-                    </a>
                     <h2 class="font-size-regular"><a href="#">{{graduate.resident.name}}</a></h2>
                     <p>{{graduate.resident.description|truncatechars:100}}</p>
                     <p><a href="{% url 'oreh_app:graduate' graduate.id %}">Continue Reading...</a></p>
