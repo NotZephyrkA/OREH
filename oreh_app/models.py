@@ -74,7 +74,7 @@ class Participant(models.Model):
             return self.photo.url
 
     def __str__(self):
-        return f"{self.name} {self.second_name}"
+        return "{self.name} {self.second_name}"
 
     class Meta:
         verbose_name = "Участник"
@@ -187,6 +187,8 @@ class Courses(models.Model):
 
     def __str__(self):
         return self.name
+    def __lt__(self, other):
+        return self.name < other.name
 
     class Meta:
         verbose_name = "Курс"

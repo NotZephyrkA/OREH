@@ -8,7 +8,7 @@ from .recommendations import getRecommendations, topMatches, transformPrefs
 
 class IndexView(View):
     def get(self, request):
-        achievements = Achievement.objects.all().order_by('date')[:10]
+        achievements = Achievement.objects.all().order_by('date')[:3]
         services = Services.objects.all()
         questions = Questions.objects.all()
         return render(request, 'oreh_app/index.html',
