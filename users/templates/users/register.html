@@ -4,20 +4,18 @@
 
 
 {% block content %}
-
+<style>
+    .head{
+    margin-top:40px;
+    }
+</style>
 <section class="site-section" id="blog-section">
+    <div class ='head'>
     <div class="container">
-        <form method="post" action="{% url 'users:login' %}" class="form" style="margin-top:10%">
-
-            {% csrf_token %}
-            {% bootstrap_form form %}
-
-            {% buttons %}
-            <button name="submit" class="btn btn-primary"> Register</button>
-            {% endbuttons %}
-            <input type="hidden" name="next" value="{% url 'oreh_app:index' %}"/>
-
-        </form>
+        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdSfh5Sr9imKGMbvcQO6ms0HHf4cSjaUNsBZ45IVkbQX_GPMw/viewform?embedded=true"
+                width="1100" height="1200" frameborder="0" marginheight="100" marginwidth="100">Загрузка…
+        </iframe>
+    </div>
     </div>
 </section>
 {% endblock content %}
