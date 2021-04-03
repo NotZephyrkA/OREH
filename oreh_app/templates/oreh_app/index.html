@@ -24,7 +24,7 @@
 
                     {% if not user.is_authenticated %}
                     <div data-aos="fade-up" data-aos-delay="100">
-                        <a href="{% url 'users:register' %}" class="btn smoothscroll btn-primary mr-2 mb-2">Зарегистрироваться</a>
+                        <a href="{% url 'users:register' %}" class="btn smoothscroll btn-primary mr-2 mb-2">Подать заявку</a>
                     </div>
                     {% endif %}
                 </div>
@@ -165,71 +165,21 @@
                 <div class="col-md-4 text-center">
                     <p class="mb-4">
                         <span class="icon-room d-block h4 text-primary"></span>
-                        <span>203 Fake St. Mountain View, San Francisco, California, USA</span>
+                        <span>{{info.address}}</span>
                     </p>
                 </div>
                 <div class="col-md-4 text-center">
                     <p class="mb-4">
                         <span class="icon-phone d-block h4 text-primary"></span>
-                        <a href="#">+1 232 3235 324</a>
+                        <span>{{info.phone}}</span>
                     </p>
                 </div>
                 <div class="col-md-4 text-center">
                     <p class="mb-0">
                         <span class="icon-mail_outline d-block h4 text-primary"></span>
-                        <a href="#">youremail@domain.com</a>
+                        <span>{{info.email}}</span>
                     </p>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12 mb-5">
-                    <form action="#" class="p-5 bg-white">
-
-                        <h2 class="h4 text-black mb-5">Форма связи</h2>
-
-                        <div class="row form-group">
-                            <div class="col-md-6 mb-3 mb-md-0">
-                                <label class="text-black" for="fname">First Name</label>
-                                <input type="text" id="fname" class="form-control">
-                            </div>
-                            <div class="col-md-6">
-                                <label class="text-black" for="lname">Last Name</label>
-                                <input type="text" id="lname" class="form-control">
-                            </div>
-                        </div>
-
-                        <div class="row form-group">
-
-                            <div class="col-md-12">
-                                <label class="text-black" for="email">Email</label>
-                                <input type="email" id="email" class="form-control">
-                            </div>
-                        </div>
-
-                        <div class="row form-group">
-
-                            <div class="col-md-12">
-                                <label class="text-black" for="subject">Subject</label>
-                                <input type="subject" id="subject" class="form-control">
-                            </div>
-                        </div>
-
-                        <div class="row form-group">
-                            <div class="col-md-12">
-                                <label class="text-black" for="message">Message</label>
-                                <textarea name="message" id="message" cols="30" rows="7" class="form-control"
-                                          placeholder="Write your notes or questions here..."></textarea>
-                            </div>
-                        </div>
-
-                        <div class="row form-group">
-                            <div class="col-md-12">
-                                <input type="submit" value="Send Message" class="btn btn-primary btn-md text-white">
-                            </div>
-                        </div>
-                    </form>
-                </div>
-
             </div>
         </div>
     </section>

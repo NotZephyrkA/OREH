@@ -11,8 +11,9 @@ class IndexView(View):
         achievements = Achievement.objects.all().order_by('date')[:3]
         services = Services.objects.all()
         questions = Questions.objects.all()
+        info = Info.objects.all()[0]
         return render(request, 'oreh_app/index.html',
-                      {'achievements': achievements, 'services': services, 'questions': questions})
+                      {'achievements': achievements, 'services': services, 'questions': questions, 'info': info})
 
 
 class ResidentsView(View):
@@ -56,7 +57,10 @@ class PersonalAccount(View):
                 marks_map[mark.user] = mark.mark
             recommendations_map[course] = marks_map
         user = Profile.objects.get(user=request.user)
-        recommendations = getRecommendations(transformPrefs(recommendations_map), user.user)
+        prefs = transformPrefs(recommendations_map)
+        recommendations={}
+        if user.user in prefs:
+            recommendations = getRecommendations(prefs, user.user)
         return render(request, 'oreh_app/personal-account.html', {'recommendations': recommendations})
 
 

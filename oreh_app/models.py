@@ -281,3 +281,14 @@ class Questions(models.Model):
     class Meta:
         verbose_name = "Вопрос"
         verbose_name_plural = "Вопросы"
+
+
+class Info(models.Model):
+    address = models.TextField(verbose_name="Адрес")
+    phone = models.TextField(verbose_name="Телефон")
+    email = models.TextField(verbose_name="Почта")
+    link_application_form = models.TextField(verbose_name="Ссылка на заявку в Google форме")
+
+    class Meta:
+        verbose_name = "Информация о бизнес-инкубаторе"
+        verbose_name_plural = "Информация о бизнес-инкубаторе"
