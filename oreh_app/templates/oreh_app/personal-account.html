@@ -3,7 +3,7 @@
 {% block content %}
 <style>
     .head{
-        margin-top:40px;
+    margin-top:40px;
     }
 
 
@@ -17,18 +17,19 @@
                         <section class="section summary-section">
                             <h2 class="section-title"><i class="fa fa-user"></i>Проект</h2>
                             {% if user.profile.resident.project is not None %}
-                            <div class="summary">
-                                <div class="col-md-6 col-lg-4 mb-4 mb-lg-4 aos-init aos-animate" data-aos="fade-up"
-                                     data-aos-delay="">
-                                    <div class="h-entry">
-                                        <img src="{{user.profile.resident.project.image_url}}" alt="Image"
-                                             class="img-fluid"
-                                             height="200" width="200">
-                                        <h2 class="font-size-regular">{{user.profile.resident.project.name}}</h2>
-                                        <p>{{user.profile.resident.project.annotation|truncatechars:100}}</p>
-                                    </div>
+                            <div class="row">
+                                <div class="col" data-aos="fade-up" data-aos-delay="">
+                                    <img src="{{user.profile.resident.project.image_url}}" alt="Image" class="img-fluid"
+                                         height="200"
+                                         width="200">
                                 </div>
-                            </div><!--//summary-->
+                                <div class="col-9">
+                                    <div class="col-12">
+                                    </div>
+                                    <h2 class="font-size-regular">{{user.profile.resident.project.name}}</h2>
+                                    <p>{{user.profile.resident.project.annotation|truncatechars:100}}</p>
+                                </div>
+                            </div>
                             {% endif %}
                             <div class="row mb-5">
                                 <div class="col-12 text-center">
@@ -115,7 +116,7 @@
                                             <!--                        </div>-->
                                             <p>{{event.description|truncatechars:100}}</p>
                                             <h6>
-                                                <a href="#contact-section" class='a1'>Смотреть больше</a>
+                                                <!--   <a href="#contact-section" class='a1'>Смотреть больше</a> -->
 
                                             </h6>
                                         </div>
@@ -128,8 +129,10 @@
 
                         <section class="section projects-section">
                             <ul class="nav nav-tabs">
-                                <li class="active"><a data-toggle="tab" href="#home"><h2 class="section-title"><i class="fa fa-briefcase"></i>Мои курсы</h2></a></li>
-                                <li><a data-toggle="tab" href="#menu1"><h2 class="section-title"><i class="fa fa-briefcase"></i>Рекомендации</h2></a></li>
+                                <li class="active"><a data-toggle="tab" href="#home"><h2 class="section-title"><i
+                                        class="fa fa-briefcase"></i> Мои курсы / </h2></a></li>
+                                <li><a data-toggle="tab" href="#menu1"><h2 class="section-title"><i
+                                        class="fa fa-briefcase"></i> / Рекомендации</h2></a></li>
                             </ul>
 
                             <div class="tab-content">
@@ -138,10 +141,16 @@
                                     {% if user.profile.courses is not None %}
                                     <div class="summary">
                                         {% for course in user.profile.courses.all %}
-                                        <div class="col-md-6 col-lg-4 mb-4 mb-lg-4 aos-init aos-animate">
-                                            <div class="h-entry">
-                                                <img src="{{course.image_url}}" alt="Image" class="img-fluid"
-                                                     height="200" width="200">
+                                        <div class="row">
+                                            <div class="col" data-aos="fade-up" data-aos-delay="">
+                                                <img src="{{course.image_url}}" alt="Image"
+                                                     class="img-fluid"
+                                                     height="200"
+                                                     width="200">
+                                            </div>
+                                            <div class="col-9">
+                                                <div class="col-12">
+                                                </div>
                                                 <h2 class="font-size-regular">{{course.name}}</h2>
                                                 <p>{{course.description|truncatechars:100}}</p>
                                             </div>
@@ -152,12 +161,18 @@
                                 </div>
                                 <div id="menu1" class="tab-pane fade">
                                     <h3></h3>
-                                     <div class="summary">
-                                        {% for course in recommendations %}
-                                        <div class="col-md-6 col-lg-4 mb-4 mb-lg-4 aos-init aos-animate">
-                                            <div class="h-entry">
-                                                <img src="{{course.image_url}}" alt="Image" class="img-fluid"
-                                                     height="200" width="200">
+                                    <div class="summary">
+                                        {% for i,course in recommendations %}
+                                        <div class="row">
+                                            <div class="col" data-aos="fade-up" data-aos-delay="">
+                                                <img src="{{course.image_url}}" alt="Image"
+                                                     class="img-fluid"
+                                                     height="200"
+                                                     width="200">
+                                            </div>
+                                            <div class="col-9">
+                                                <div class="col-12">
+                                                </div>
                                                 <h2 class="font-size-regular">{{course.name}}</h2>
                                                 <p>{{course.description|truncatechars:100}}</p>
                                             </div>
@@ -171,8 +186,10 @@
                     </div>
                     <div class="col-md-4" id='desc'>
                         <style>#desc{
-                    background: linear-gradient(135deg, #e55d87 0%, #5fc3e4 100%);
-}
+                            background: rgb(0,22,36);
+                            background: linear-gradient(90deg, rgba(0,22,36,1) 0%, rgba(206,203,237,1) 0%,
+                            rgba(0,80,255,0.26234243697478987) 0%);
+                            }
 
 
                         </style>

@@ -5,23 +5,6 @@
     .head{
         margin-top:40px;
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 </style>
 <section class="site-section" id="blog-section">
     <div class="container">
@@ -35,9 +18,7 @@
                 {% for course in courses %}
                 <div class="col-md-6 col-lg-4 mb-4 mb-lg-4 aos-init aos-animate" data-aos="fade-up" data-aos-delay="">
                     <div class="h-entry">
-                        <a href="single.html">
                             <img src="{{course.image_url}}" alt="Image" class="img-fluid">
-                        </a>
                         <h2 class="font-size-regular"><a href="#">{{course.name}}</a></h2>
                         <div class="meta mb-4">{{course.place}}
                             <span class="mx-2">•</span> {{course.date_of_start}}<span class="mx-2">•</span>

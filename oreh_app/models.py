@@ -74,7 +74,7 @@ class Participant(models.Model):
             return self.photo.url
 
     def __str__(self):
-        return "{self.name} {self.second_name}"
+        return '{0} {1}'.format(self.name,self.second_name)
 
     class Meta:
         verbose_name = "Участник"
