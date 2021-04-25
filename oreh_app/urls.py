@@ -20,3 +20,4 @@ urlpatterns = [
     path('personal_account/', views.PersonalAccount.as_view(), name='personal_account'),
     re_path(r'graduates/(?P<graduate_id>\d+)/', views.GraduateView.as_view(), name="graduate"),
 ]
+handler404 = 'oreh_app.views.custom_page_not_found_view'

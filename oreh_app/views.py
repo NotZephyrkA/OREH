@@ -134,3 +134,7 @@ class GraduateView(View):
     def get(self, request, graduate_id):
         graduate = Graduate.objects.get(id=graduate_id)
         return render(request, 'oreh_app/graduate.html', {'graduate': graduate})
+
+
+def custom_page_not_found_view(request, exception):
+    return render(request, "error/404.html", {})
